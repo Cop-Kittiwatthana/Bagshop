@@ -1,8 +1,12 @@
 ﻿Imports System.Data.SqlClient
+Imports System.IO
 Public Class frmProduct
     Dim save_status As String
-    Public pk As String
+    Public pk, patch As String
+    Dim row As Integer
+    Dim picdata() As Byte
     Sub clear()
+        ptb1.Image = Nothing
         txtID.Text = ""
         txtName.Text = ""
         txtPrice.Text = ""
@@ -135,11 +139,16 @@ Public Class frmProduct
         Dim sql As String
         Dim sqlCmd As SqlCommand
         Dim sqlDr As SqlDataReader
+        Dim img As Byte() = Nothing
+        Dim Fr As FileStream
+        Dim Br As BinaryReader
 
-        'If txtPoint.Text > "32767" Then
-        'ageBox.Show("ใส่ข้อมูลเกินค่าที่กำหนด")
-        'Exit Sub
-        'End If
+        If patch <> Nothing Then
+            Fr = New FileStream(patch, FileMode.Open, FileAccess.Read)
+            Br = New BinaryReader(Fr)
+            img = Br.ReadBytes(CInt(Fr.Length))
+        End If
+
 
         If txtID.TextLength = 0 Or txtName.TextLength = 0 Or txtPrice.TextLength = 0 Or txtAmount.TextLength = 0 Or txtDetail.TextLength = 0 Or cmbCate.SelectedIndex = -1 Or txtColor.TextLength = 0 Then
             MessageBox.Show("กรุณาป้อนข้อมูล", "ตรวจสอบ", MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -159,10 +168,15 @@ Public Class frmProduct
             End If
             sqlDr.Close()
             If save_status = "Add" Then
-                sql = "INSERT INTO Product(P_ID,P_Name,P_Price,P_Amount,P_Detail,C_ID) VALUES ('" & txtID.Text & "','" & txtName.Text & "','" & txtPrice.Text & "','" & txtAmount.Text & "','" & txtDetail.Text & "','" & cmbCate.SelectedValue & "')"
+                If patch = Nothing Then
+                    sql = "INSERT INTO Product(P_ID,P_Name,P_Price,P_Amount,P_Detail,C_ID) VALUES ('" & txtID.Text & "','" & txtName.Text & "','" & txtPrice.Text & "','" & txtAmount.Text & "','" & txtDetail.Text & "','" & cmbCate.SelectedValue & "')"
+                End If
+                sql = "INSERT INTO Product(P_ID,P_Name,P_Price,P_Amount,P_Detail,C_ID,P_IMG) VALUES ('" & txtID.Text & "','" & txtName.Text & "','" & txtPrice.Text & "','" & txtAmount.Text & "','" & txtDetail.Text & "','" & cmbCate.SelectedValue & "',@IMG)"
             End If
             sqlCmd = New SqlCommand(sql, Conn)
+            sqlCmd.Parameters.Add(New SqlParameter("@IMG", img))
             sqlCmd.ExecuteNonQuery() 'ประมวลผลคำสั่ง SQL
+
             sql = "Select MAX(P_ID)from Product"
             sqlCmd = New SqlCommand(sql, Conn)
             sqlDr = sqlCmd.ExecuteReader
@@ -277,7 +291,28 @@ Public Class frmProduct
 
     End Sub
 
+    Sub pic()
+        Dim sql As String
+        Dim da As SqlDataAdapter
+        sql = "SELECT P_IMG from Product where P_ID = '" & dgvProduct.Rows(row).Cells(0).Value & "'"
+        Module1.Connect()
+        Dim tb As New DataTable
+        da = New SqlDataAdapter(sql, Conn)
+        da.Fill(tb)
+        Dim img() As Byte
+        If tb.Rows(0)(0) Is DBNull.Value Then
+            ptb1.Image = Nothing
+            Exit Sub
+        End If
+        img = tb.Rows(0)(0)
+        picdata = img
+        Dim ms As New MemoryStream(img)
+        ptb1.Image = Image.FromStream(ms)
+        ms.Close()
+    End Sub
+
     Private Sub dgvProduct_CellContentDoubleClick(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dgvProduct.CellContentDoubleClick
+        row = e.RowIndex
         txtID.Text = dgvProduct.Rows(e.RowIndex).Cells(0).Value
         txtName.Text = dgvProduct.Rows(e.RowIndex).Cells(1).Value
         txtColor.Text = dgvProduct.Rows(e.RowIndex).Cells(2).Value
@@ -285,6 +320,7 @@ Public Class frmProduct
         txtAmount.Text = dgvProduct.Rows(e.RowIndex).Cells(4).Value
         cmbCate.Text = dgvProduct.Rows(e.RowIndex).Cells(5).Value
         txtDetail.Text = dgvProduct.Rows(e.RowIndex).Cells(6).Value
+        pic()
         txtID.Enabled = False
         txtName.Enabled = False
         txtPrice.Enabled = False
@@ -299,4 +335,20 @@ Public Class frmProduct
         btncancel.Enabled = True
         btnExit.Enabled = True
     End Sub
+
+    Private Sub ptb1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ptb1.Click
+
+    End Sub
+
+    Private Sub ptb1_DoubleClick(ByVal sender As Object, ByVal e As System.EventArgs) Handles ptb1.DoubleClick
+        Dim opf As New OpenFileDialog
+        opf.Filter = "Choose Image(*.jpg)|*.jpg"
+        If opf.ShowDialog = DialogResult.OK Then
+            patch = opf.FileName
+            ptb1.ImageLocation = patch
+        Else
+            ptb1.Image = Nothing
+        End If
+    End Sub
+
 End Class

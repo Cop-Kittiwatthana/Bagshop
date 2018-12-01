@@ -23,6 +23,8 @@ Partial Class frmProduct
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.lbl8 = New System.Windows.Forms.Label()
+        Me.txtColor = New System.Windows.Forms.TextBox()
         Me.ptb1 = New System.Windows.Forms.PictureBox()
         Me.txtDetail = New System.Windows.Forms.TextBox()
         Me.Label7 = New System.Windows.Forms.Label()
@@ -44,7 +46,6 @@ Partial Class frmProduct
         Me.btnDelete = New System.Windows.Forms.Button()
         Me.btnAdd = New System.Windows.Forms.Button()
         Me.dgvProduct = New System.Windows.Forms.DataGridView()
-        Me.txtColor = New System.Windows.Forms.TextBox()
         Me.GroupBox1.SuspendLayout()
         CType(Me.ptb1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dgvProduct, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -52,6 +53,7 @@ Partial Class frmProduct
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.lbl8)
         Me.GroupBox1.Controls.Add(Me.txtColor)
         Me.GroupBox1.Controls.Add(Me.ptb1)
         Me.GroupBox1.Controls.Add(Me.txtDetail)
@@ -74,11 +76,30 @@ Partial Class frmProduct
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "ข้อมูลกระเป๋า"
         '
+        'lbl8
+        '
+        Me.lbl8.AutoSize = True
+        Me.lbl8.Location = New System.Drawing.Point(426, 375)
+        Me.lbl8.Name = "lbl8"
+        Me.lbl8.Size = New System.Drawing.Size(217, 25)
+        Me.lbl8.TabIndex = 17
+        Me.lbl8.Text = "ดับเบิ้ลคลิกเพื่อเพิ่มรูปภาพ"
+        '
+        'txtColor
+        '
+        Me.txtColor.Location = New System.Drawing.Point(135, 168)
+        Me.txtColor.Name = "txtColor"
+        Me.txtColor.Size = New System.Drawing.Size(119, 31)
+        Me.txtColor.TabIndex = 16
+        '
         'ptb1
         '
-        Me.ptb1.Location = New System.Drawing.Point(429, 154)
+        Me.ptb1.BackColor = System.Drawing.SystemColors.AppWorkspace
+        Me.ptb1.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.ptb1.Location = New System.Drawing.Point(413, 110)
         Me.ptb1.Name = "ptb1"
-        Me.ptb1.Size = New System.Drawing.Size(204, 210)
+        Me.ptb1.Size = New System.Drawing.Size(247, 253)
+        Me.ptb1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.ptb1.TabIndex = 15
         Me.ptb1.TabStop = False
         '
@@ -251,13 +272,6 @@ Partial Class frmProduct
         Me.dgvProduct.Size = New System.Drawing.Size(672, 174)
         Me.dgvProduct.TabIndex = 25
         '
-        'txtColor
-        '
-        Me.txtColor.Location = New System.Drawing.Point(135, 168)
-        Me.txtColor.Name = "txtColor"
-        Me.txtColor.Size = New System.Drawing.Size(119, 31)
-        Me.txtColor.TabIndex = 16
-        '
         'frmProduct
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(12.0!, 25.0!)
@@ -305,4 +319,5 @@ Partial Class frmProduct
     Friend WithEvents btnAdd As System.Windows.Forms.Button
     Friend WithEvents dgvProduct As System.Windows.Forms.DataGridView
     Friend WithEvents txtColor As System.Windows.Forms.TextBox
+    Friend WithEvents lbl8 As System.Windows.Forms.Label
 End Class
