@@ -12,13 +12,13 @@ Public Class frmSale
 
         Module1.Connect()
         'sql "SELECT E_Usename, E_Name From Employee WHERE E_Usename = '" & User_Na & "'"
-        sql = "SELECT U_User, U_Name From Userr"
+        sql = "SELECT U_ID, U_Name From Userr"
 
         da = New SqlDataAdapter(sql, Conn)
         da.Fill(ds, "Userr")
         If ds.Tables("Userr").Rows.Count <> 0 Then
             cmbUser.DataSource = ds.Tables("Userr")
-            cmbUser.ValueMember = "U_User"
+            cmbUser.ValueMember = "U_ID"
             cmbUser.DisplayMember = "U_Name"
         End If
         sql = "SELECT P_ID,P_Name,P_Price,P_Amount FROM Product ORDER BY P_Name"
@@ -346,4 +346,7 @@ Public Class frmSale
         End If
     End Sub
 
+    Private Sub cmbUser_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmbUser.SelectedIndexChanged
+
+    End Sub
 End Class

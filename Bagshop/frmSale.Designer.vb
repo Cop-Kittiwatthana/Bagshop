@@ -96,7 +96,7 @@ Partial Class frmSale
         Me.Label2.AutoSize = True
         Me.Label2.Location = New System.Drawing.Point(10, 129)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(79, 29)
+        Me.Label2.Size = New System.Drawing.Size(78, 29)
         Me.Label2.TabIndex = 3
         Me.Label2.Text = "วันที่ขาย"
         '
@@ -140,7 +140,7 @@ Partial Class frmSale
         Me.Label4.AutoSize = True
         Me.Label4.Location = New System.Drawing.Point(12, 293)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(104, 29)
+        Me.Label4.Size = New System.Drawing.Size(103, 29)
         Me.Label4.TabIndex = 7
         Me.Label4.Text = "รหัสกระเป๋า"
         '
@@ -166,7 +166,7 @@ Partial Class frmSale
         Me.Label6.AutoSize = True
         Me.Label6.Location = New System.Drawing.Point(5, 452)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(111, 29)
+        Me.Label6.Size = New System.Drawing.Size(110, 29)
         Me.Label6.TabIndex = 11
         Me.Label6.Text = "จำนวนที่ขาย"
         '
@@ -208,7 +208,7 @@ Partial Class frmSale
         Me.Label8.AutoSize = True
         Me.Label8.Location = New System.Drawing.Point(345, 293)
         Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(91, 29)
+        Me.Label8.Size = New System.Drawing.Size(90, 29)
         Me.Label8.TabIndex = 15
         Me.Label8.Text = "ชื่อกระเป๋า"
         '
@@ -217,7 +217,7 @@ Partial Class frmSale
         Me.Label9.AutoSize = True
         Me.Label9.Location = New System.Drawing.Point(315, 368)
         Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(129, 29)
+        Me.Label9.Size = New System.Drawing.Size(128, 29)
         Me.Label9.TabIndex = 17
         Me.Label9.Text = "จำนวนคงเหลือ"
         '
@@ -393,7 +393,7 @@ Partial Class frmSale
         Me.Label10.AutoSize = True
         Me.Label10.Location = New System.Drawing.Point(687, 914)
         Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(81, 29)
+        Me.Label10.Size = New System.Drawing.Size(80, 29)
         Me.Label10.TabIndex = 36
         Me.Label10.Text = "รวมยอด"
         '

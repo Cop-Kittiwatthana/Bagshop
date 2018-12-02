@@ -23,10 +23,10 @@ Partial Class frmReportCate
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.btnSearch = New System.Windows.Forms.Button()
-        Me.ctrv1 = New CrystalDecisions.Windows.Forms.CrystalReportViewer()
         Me.cmbSearch = New System.Windows.Forms.ComboBox()
+        Me.btnSearch = New System.Windows.Forms.Button()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.ctrv1 = New CrystalDecisions.Windows.Forms.CrystalReportViewer()
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.Panel2.SuspendLayout()
         Me.SplitContainer1.SuspendLayout()
@@ -52,14 +52,13 @@ Partial Class frmReportCate
         Me.SplitContainer1.SplitterDistance = 134
         Me.SplitContainer1.TabIndex = 0
         '
-        'Label1
+        'cmbSearch
         '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(186, 57)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(72, 29)
-        Me.Label1.TabIndex = 1
-        Me.Label1.Text = "ประเภท"
+        Me.cmbSearch.FormattingEnabled = True
+        Me.cmbSearch.Location = New System.Drawing.Point(264, 49)
+        Me.cmbSearch.Name = "cmbSearch"
+        Me.cmbSearch.Size = New System.Drawing.Size(262, 37)
+        Me.cmbSearch.TabIndex = 3
         '
         'btnSearch
         '
@@ -69,6 +68,15 @@ Partial Class frmReportCate
         Me.btnSearch.TabIndex = 2
         Me.btnSearch.Text = "ค้นหา"
         Me.btnSearch.UseVisualStyleBackColor = True
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(186, 57)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(71, 29)
+        Me.Label1.TabIndex = 1
+        Me.Label1.Text = "ประเภท"
         '
         'ctrv1
         '
@@ -80,14 +88,6 @@ Partial Class frmReportCate
         Me.ctrv1.Name = "ctrv1"
         Me.ctrv1.Size = New System.Drawing.Size(816, 531)
         Me.ctrv1.TabIndex = 0
-        '
-        'cmbSearch
-        '
-        Me.cmbSearch.FormattingEnabled = True
-        Me.cmbSearch.Location = New System.Drawing.Point(264, 49)
-        Me.cmbSearch.Name = "cmbSearch"
-        Me.cmbSearch.Size = New System.Drawing.Size(262, 37)
-        Me.cmbSearch.TabIndex = 3
         '
         'frmReportCate
         '

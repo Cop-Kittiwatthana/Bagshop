@@ -55,6 +55,7 @@
     <Reference Include="CrystalDecisions.Shared, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="FlashControlV71, Version=1.0.3187.32366, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="Microsoft.VisualBasic.PowerPacks.Vs, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
@@ -104,6 +105,12 @@
       <DependentUpon>ctrSale.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ctrSlipSale.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ctrSlipSale.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ctrUser.vb">
       <DependentUpon>ctrUser.rpt</DependentUpon>
       <DesignTime>True</DesignTime>
@@ -117,6 +124,12 @@
     </Compile>
     <Compile Include="DataSet1.vb">
       <DependentUpon>DataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Form1.Designer.vb">
+      <DependentUpon>Form1.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form1.vb">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmAdminMenu.Designer.vb">
       <DependentUpon>frmAdminMenu.vb</DependentUpon>
@@ -184,6 +197,12 @@
     <Compile Include="frmSale.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmSlipSale.Designer.vb">
+      <DependentUpon>frmSlipSale.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmSlipSale.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmUserMenu.Designer.vb">
       <DependentUpon>frmUserMenu.vb</DependentUpon>
     </Compile>
@@ -249,9 +268,16 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>ctrSale.vb</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="ctrSlipSale.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ctrSlipSale.vb</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="ctrUser.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>ctrUser.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmAdminMenu.resx">
       <DependentUpon>frmAdminMenu.vb</DependentUpon>
@@ -285,6 +311,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmSale.resx">
       <DependentUpon>frmSale.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSlipSale.resx">
+      <DependentUpon>frmSlipSale.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmUserMenu.resx">
       <DependentUpon>frmUserMenu.vb</DependentUpon>

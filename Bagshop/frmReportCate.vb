@@ -33,4 +33,8 @@ Public Class frmReportCate
         ' currentReport.SetParameterValue("E_Name", E_Name)
         ctrv1.ReportSource = currentReport ' ctrv1 คือ ชื่อของ CrystalReportViewer ที่อยู่ในฟอร์มนี้
     End Sub
+
+    Private Sub cmbSearch_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmbSearch.SelectedIndexChanged
+
+    End Sub
 End Class

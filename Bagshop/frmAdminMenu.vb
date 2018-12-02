@@ -1,4 +1,6 @@
-﻿Public Class frmAdminMenu
+﻿Imports System.Data
+Imports System.Data.SqlClient
+Public Class frmAdminMenu
 
     Private Sub btnUser_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnUser.Click
         frmUser.Show()
@@ -10,15 +12,15 @@
 
     End Sub
 
-    Private Sub btnProduct_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnProduct.Click
+    Private Sub btnProduct_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         frmProduct.Show()
     End Sub
 
-    Private Sub btnMember_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnMember.Click
+    Private Sub btnMember_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         frmMember.Show()
     End Sub
 
-    Private Sub btnSale_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSale.Click
+    Private Sub btnSale_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         frmSale.Show()
     End Sub
 
@@ -27,7 +29,7 @@
 
     End Sub
 
-    Private Sub btnProperty_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnProperty.Click
+    Private Sub btnProperty_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         frmPropertyy.Show()
     End Sub
 
@@ -50,7 +52,7 @@
     End Sub
 
     Private Sub frmAdminMenu_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-       
+        lbl1.Text = U_Name
     End Sub
 
 End Class

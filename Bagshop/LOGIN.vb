@@ -32,7 +32,7 @@ Public Class login
             Me.Hide()
             frmUserMenu.Show()
         End If
-        MessageBox.Show("            ยินดีต้อนรับ " & U_Name)
+        'MessageBox.Show("            ยินดีต้อนรับ " & U_Name)
     End Sub
 
     Private Sub Panel1_MouseDown(ByVal sender As System.Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles Panel1.MouseDown
@@ -61,4 +61,30 @@ Public Class login
     Private Sub Panel1_Paint(ByVal sender As System.Object, ByVal e As System.Windows.Forms.PaintEventArgs) Handles Panel1.Paint
 
     End Sub
+
+
+    Private Sub txtPass_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtUser.Click
+
+    End Sub
+
+    Private Sub txtUser_MouseClick(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles txtUser.MouseClick
+        txtUser.Text = Nothing
+    End Sub
+
+    Private Sub txtPass_MouseClick(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles txtPass.MouseClick
+        txtPass.Text = Nothing
+        txtPass.PasswordChar = "*"
+    End Sub
+
+    Private Sub login_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+
+    End Sub
+
+    Private Sub btnClean_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnClean.Click
+        txtUser.Text = ""
+        txtPass.Text = ""
+
+    End Sub
+
+
 End Class

@@ -43,11 +43,11 @@ Public Class frmUser
     Sub showData()
         Dim sql As String
         Dim da As SqlDataAdapter
-        ' If Ed = "1" Then
-        'sql = "SELECT U_ID,U_User,U_Name,U_status FROM Userr where U_User = '" & txtUser.Text & "'"
-        'Else
-        sql = "SELECT U_ID,U_User,U_Name,U_status,U_User FROM Userr"
-        'End If
+        If Ed = "0" Then
+            sql = "SELECT U_ID,U_User,U_Name,U_status FROM Userr where U_User = '" & txtUser.Text & "'"
+        Else
+            sql = "SELECT U_ID,U_User,U_Name,U_status FROM Userr"
+        End If
         Module1.Connect()
         Dim ds As New DataSet
         da = New SqlDataAdapter(sql, Conn)
@@ -69,7 +69,7 @@ Public Class frmUser
         dgvUserr.Columns(2).Width = 180
         dgvUserr.Columns(3).HeaderText = "ระดับ"
         dgvUserr.Columns(3).Width = 100
-        dgvUserr.Columns(4).Width = 100
+
 
     End Sub
     
