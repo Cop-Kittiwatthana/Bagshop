@@ -13,8 +13,9 @@
     <AssemblyName>Bagshop</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>WindowsForms</MyType>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -49,10 +50,17 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="FlashControlV71, Version=1.0.3187.32366, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
@@ -72,6 +80,44 @@
     <Import Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ctrCategory.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ctrCategory.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ctrMember.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ctrMember.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ctrProduct.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ctrProduct.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ctrSale.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ctrSale.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ctrUser.vb">
+      <DependentUpon>ctrUser.rpt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DataSet1.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSet1.vb">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </Compile>
     <Compile Include="frmAdminMenu.Designer.vb">
       <DependentUpon>frmAdminMenu.vb</DependentUpon>
     </Compile>
@@ -102,10 +148,46 @@
     <Compile Include="frmPropertyy.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmReportCate.Designer.vb">
+      <DependentUpon>frmReportCate.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmReportCate.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmReportMember.Designer.vb">
+      <DependentUpon>frmReportMember.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmReportMember.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmReportProduct.Designer.vb">
+      <DependentUpon>frmReportProduct.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmReportProduct.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmReportSale.Designer.vb">
+      <DependentUpon>frmReportSale.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmReportSale.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmReportUser.Designer.vb">
+      <DependentUpon>frmReportUser.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmReportUser.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmSale.Designer.vb">
       <DependentUpon>frmSale.vb</DependentUpon>
     </Compile>
     <Compile Include="frmSale.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmUserMenu.Designer.vb">
+      <DependentUpon>frmUserMenu.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmUserMenu.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="LOGIN.vb">
@@ -143,8 +225,34 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Report.Designer.vb">
+      <DependentUpon>Report.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Report.vb">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="ctrCategory.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ctrCategory.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ctrMember.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ctrMember.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ctrProduct.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ctrProduct.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ctrSale.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ctrSale.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ctrUser.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ctrUser.vb</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmAdminMenu.resx">
       <DependentUpon>frmAdminMenu.vb</DependentUpon>
     </EmbeddedResource>
@@ -160,8 +268,26 @@
     <EmbeddedResource Include="frmPropertyy.resx">
       <DependentUpon>frmPropertyy.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmReportCate.resx">
+      <DependentUpon>frmReportCate.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmReportMember.resx">
+      <DependentUpon>frmReportMember.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmReportProduct.resx">
+      <DependentUpon>frmReportProduct.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmReportSale.resx">
+      <DependentUpon>frmReportSale.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmReportUser.resx">
+      <DependentUpon>frmReportUser.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmSale.resx">
       <DependentUpon>frmSale.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmUserMenu.resx">
+      <DependentUpon>frmUserMenu.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LOGIN.resx">
       <DependentUpon>LOGIN.vb</DependentUpon>
@@ -178,8 +304,23 @@
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Report.resx">
+      <DependentUpon>Report.vb</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
+    <None Include="DataSet1.xsc">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="DataSet1.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSet1.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="DataSet1.xss">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </None>
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
@@ -189,6 +330,9 @@
       <CustomToolNamespace>My</CustomToolNamespace>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

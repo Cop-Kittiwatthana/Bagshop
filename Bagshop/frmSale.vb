@@ -3,6 +3,8 @@ Imports System.Data.SqlClient
 Public Class frmSale
     Public j, h, amount As Integer
     Dim sum As Double
+    Dim row As Integer
+    Dim save_status As String
     Private Sub frmSale_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Dim sql As String
         Dim da As SqlDataAdapter
@@ -60,7 +62,6 @@ Public Class frmSale
         txtAmount.Text = ""
         txtPID.Text = ""
         txtPNa.Text = ""
-        txtID.Text = ""
         txtsale.Text = ""
         txtPrice.Text = ""
     End Sub
@@ -137,7 +138,30 @@ Public Class frmSale
     End Sub
 
     Private Sub btnAdd_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAdd.Click
+        Dim Sql As String
+        Dim key_Gen As String = ""
+        Dim sqlDr As SqlDataReader
+        Dim sqlCmd As SqlCommand
+
+        Module1.Connect()
+        Sql = "SELECT MAX(O_ID)From Orderr"
+        sqlCmd = New SqlCommand(Sql, Conn)                          'สร้าง sqlCmd โดยให้เก็บคำสั้่งที่อยู่ใน sql 
+        sqlDr = sqlCmd.ExecuteReader                                'ประมวลผลคำสั้ง และ นำผลลัพธ์เก็บไว้ใน sqlDr
+        If sqlDr.Read() Then                                        'ตรวจสอบว่าอ่านข้อมูลได้ จะเข้าไปทำในเงื่อนไข
+            If sqlDr.IsDBNull(0) Then    'ตรวจสอบว่าได้ค่าว่าง จะเข้าไปทำ
+                key_Gen = "O001"                                    'กำหนดให้ key_Gen เริ่มที่E001
+            Else                                                    'ในกรณีที่อ่านแล้วได้ข้อมูล จะมาทำตรงนี้
+                key_Gen = sqlDr.Item(0)                             'กำหนดให้key_Genเม่ากับค่าที่อ่นขึ้นมาได้ เช่น E001                           
+                key_Gen = Trim(key_Gen)                             'ตัดช่องว่างในkey_Gen ทั้งหมด
+                key_Gen = Strings.Right(key_Gen, 3)                 'ตัดข้อมูลจากทางขวามา3 หลัก จะได้ 001
+                key_Gen = CInt(key_Gen) + 1                         'นำข้อมูลมาแปลเป็น int แล้วบวกเพิ่มอีก1 จะได้2
+                key_Gen = Strings.Right(("00" & key_Gen), 3)        'นำข้อมูลที่บวกแล้วมาเติม0ด้านหน้าให้ครบ3 
+                key_Gen = "O" & key_Gen                             'นำข้อมูลเติม 0 แล้วมาใว่ E ด้านหน้า จะกลายเป็น E002
+            End If
+        End If
+        sqlDr.Close()       'ใช่เสร็จแล้วต้องปิด   
         sum = 0
+        txtID.Text = key_Gen
         cmbUser.Enabled = True
         dtsale.Enabled = True
         txtMID.Enabled = False
@@ -157,13 +181,14 @@ Public Class frmSale
         btncancel.Enabled = True
         btnExit.Enabled = True
         btnPrint.Enabled = False
+        'save_status = "Add"
     End Sub
 
     Private Sub btnSave_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSave.Click
         Dim sql As String
         Dim sqlCmd As SqlCommand
         Dim sqlDr As SqlDataReader
-        Dim M_ID, saleID, Num, Price, ISBN, orderDate, Total As String
+        Dim M_ID, saleID, Num, Price, ID, orderDate, Total As String
         Dim i, k, orderID As Integer
         k = dgvSale.RowCount - 2
         If k < 0 Then
@@ -171,23 +196,24 @@ Public Class frmSale
             Exit Sub
         End If
         orderDate = Today.Date.ToString("s")
-        sql = "insert into Orderr (O_Date,Net,M_ID,U_User)"
-        sql &= "values('" & orderDate & "','" & CDbl(lblSum.Text) & "','" & CStr(txtMID.Text) & "','" & cmbUser.SelectedValue & "')"
+        sql = "insert into Orderr (O_ID,O_Date,Net,M_ID,U_ID)"
+        sql &= "values('" & CStr(txtID.Text) & "','" & orderDate & "','" & CDbl(lblSum.Text) & "','" & CStr(txtMID.Text) & "','" & cmbUser.SelectedValue & "')"
         sqlCmd = New SqlCommand(sql, Conn)
         sqlCmd.ExecuteNonQuery()
-        sql = "select max (O_ID)from Orderr"
+        sql = "select Max(O_ID)from Orderr"
         sqlCmd = New SqlCommand(sql, Conn)
         sqlDr = sqlCmd.ExecuteReader
         sqlDr.Read()
+        'saleID = txtID.Text
         saleID = sqlDr.Item(0)
         sqlDr.Close()
         For i = 0 To k
-            ISBN = dgvSale.Rows(i).Cells(0).Value
+            ID = dgvSale.Rows(i).Cells(0).Value
             Num = dgvSale.Rows(i).Cells(3).Value
             Price = dgvSale.Rows(i).Cells(2).Value
             Total = dgvSale.Rows(i).Cells(4).Value
-            sql = "insert into Order_Product (O_ID,P_ID,Num,S_Total)"
-            sql &= "values ('" & saleID & "','" & ISBN & "','" & Num & "','" & Total & "')"
+            sql = "insert into Order_Product (O_ID,P_ID,Num,Price,Total)"
+            sql &= "values ('" & saleID & "','" & ID & "','" & Num & "','" & Price & "','" & Total & "')"
             sqlCmd = New SqlCommand(sql, Conn)
             sqlCmd.ExecuteNonQuery()
         Next
@@ -199,6 +225,7 @@ Public Class frmSale
         Next
         MessageBox.Show("บันทึกข้อมูลเรียบร้อย", "ยืนยันการบันทึก", MessageBoxButtons.OK, MessageBoxIcon.Information)
         txtID.Text = saleID
+        txtID.Text = ""
         txtPID.Enabled = False
         txtPNa.Enabled = False
         cmbUser.Enabled = False
@@ -219,7 +246,7 @@ Public Class frmSale
     Private Sub btncancel_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btncancel.Click
         Dim sql As String
         Dim sqlCmd As SqlCommand
-        Dim bookID, num As String
+        Dim num As String
         Dim i, k As Integer
         txtPID.Text = ""
         txtPNa.Text = ""
@@ -288,4 +315,35 @@ Public Class frmSale
         sqlDr.Close()
         txtsale.Enabled = True
     End Sub
+
+    Private Sub txtsale_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtsale.KeyPress
+        Select Case Asc(e.KeyChar)
+            Case 48 To 57
+                e.Handled = False
+            Case 8, 13, 45
+                e.Handled = False
+            Case Else
+                e.Handled = True
+                MessageBox.Show("กรุณาระบุข้อมูลเป็นตัวเลข")
+        End Select
+    End Sub
+
+    Private Sub dgvSale_CellContentClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dgvSale.CellContentClick
+
+    End Sub
+
+    Private Sub dgvSale_CellContentDoubleClick(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dgvSale.CellContentDoubleClick
+        row = e.RowIndex
+        btRemove.Enabled = True
+        btRemove.BackColor = Color.FromArgb(52, 172, 224)
+    End Sub
+
+    Private Sub frmSale_FormClosing(ByVal sender As System.Object, ByVal e As System.Windows.Forms.FormClosingEventArgs) Handles MyBase.FormClosing
+        If MessageBox.Show("คุณต้องการออกจากโปรแกรมหรือไม่?", "Exit Program", MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) = Windows.Forms.DialogResult.OK Then
+            e.Cancel = False
+        Else
+            e.Cancel = True
+        End If
+    End Sub
+
 End Class

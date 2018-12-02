@@ -1,6 +1,6 @@
 ﻿Imports System.Data.SqlClient
 Public Class frmUser
-    Public pk As String
+    Public pk, PKK As String
     Dim save_status As String
     Sub clear()
         txtID.Text = ""
@@ -22,7 +22,7 @@ Public Class frmUser
         txtTel.Enabled = False
         txtAdd.Enabled = False
         txtUser.Enabled = False
-        If Ed = "0" Then
+        If Ed = "1" Then
             btnAdd.Enabled = False
         Else
             btnAdd.Enabled = True
@@ -34,6 +34,7 @@ Public Class frmUser
         btnExit.Enabled = True
         rbtStatus0.Enabled = False
         rbtStatus1.Enabled = False
+        cmbSex.Enabled = False
         cmbSex.Items.Add("ชาย")
         cmbSex.Items.Add("หญิง")
         showData()
@@ -42,10 +43,10 @@ Public Class frmUser
     Sub showData()
         Dim sql As String
         Dim da As SqlDataAdapter
-        'If Ed = "1" Then
-        'sql = "SELECT U_ID,U_User,U_Name,U_status FROM Userr where U_User = '" & User_Na & "'"
+        ' If Ed = "1" Then
+        'sql = "SELECT U_ID,U_User,U_Name,U_status FROM Userr where U_User = '" & txtUser.Text & "'"
         'Else
-        sql = "SELECT U_ID,U_User,U_Name,U_status FROM Userr"
+        sql = "SELECT U_ID,U_User,U_Name,U_status,U_User FROM Userr"
         'End If
         Module1.Connect()
         Dim ds As New DataSet
@@ -68,6 +69,7 @@ Public Class frmUser
         dgvUserr.Columns(2).Width = 180
         dgvUserr.Columns(3).HeaderText = "ระดับ"
         dgvUserr.Columns(3).Width = 100
+        dgvUserr.Columns(4).Width = 100
 
     End Sub
     
@@ -110,11 +112,12 @@ Public Class frmUser
         btnExit.Enabled = True
         rbtStatus0.Enabled = True
         rbtStatus1.Enabled = True
+        cmbSex.Enabled = True
         save_status = "Add"
     End Sub
 
     Private Sub btnEdit_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnEdit.Click
-        txtUser.Enabled = False
+        txtUser.Enabled = True
         txtPass.Enabled = True
         txtNa.Enabled = True
         txtAdd.Enabled = True
@@ -134,6 +137,7 @@ Public Class frmUser
             rbtStatus0.Enabled = True
             rbtStatus1.Enabled = True
         End If
+        cmbSex.Enabled = True
         save_status = "Edit"
     End Sub
 
@@ -153,7 +157,19 @@ Public Class frmUser
                 sqlCmd = New SqlCommand(sql, Conn)
                 sqlDr = sqlCmd.ExecuteReader
                 If sqlDr.Read() Then
-                    MessageBox.Show("ชื่อบริษัทซ้ำ", "ตรวจสอบ", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    MessageBox.Show("ชื่อพนักงานซ้ำ", "ตรวจสอบ", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    txtNa.Focus()
+                    sqlDr.Close()
+                    Exit Sub
+                End If
+                sqlDr.Close()
+            End If
+            If txtUser.Text <> PKK Then
+                sql = "SELECT U_User FROM Userr WHERE U_User ='" & txtUser.Text & "'"
+                sqlCmd = New SqlCommand(sql, Conn)
+                sqlDr = sqlCmd.ExecuteReader
+                If sqlDr.Read() Then
+                    MessageBox.Show("ชื่อผู้ใช้ซ้ำ", "ตรวจสอบ", MessageBoxButtons.OK, MessageBoxIcon.Information)
                     txtNa.Focus()
                     sqlDr.Close()
                     Exit Sub
@@ -180,7 +196,7 @@ Public Class frmUser
         End If
         If save_status = "Edit" Then
             sql = "UPDATE Userr set U_User= '" & txtUser.Text & "',U_ID= '" & txtID.Text & "', U_Pass = '" & txtPass.Text & "', U_Name = '" & txtNa.Text & "', U_Add = '" & txtAdd.Text & "', U_Tel = '" & txtTel.Text & "', U_Sex = '" & Sex & "' , U_Status = '" & level & "'"
-            sql &= "WHERE U_User = '" & txtUser.Text & "'"
+            sql &= "WHERE U_ID = '" & txtID.Text & "'"
         End If
         sqlCmd = New SqlCommand(sql, Conn)
         sqlCmd.ExecuteNonQuery()
@@ -198,6 +214,7 @@ Public Class frmUser
         btnSave.Enabled = False
         btncancel.Enabled = False
         btnExit.Enabled = True
+        cmbSex.Enabled = False
         showData()
     End Sub
 
@@ -205,7 +222,7 @@ Public Class frmUser
         Dim sql As String
         Dim sqlCmd As SqlCommand
         If (MessageBox.Show("คุณต้องการลบข้อมูลนี้ใช่หรือไม่", "ยืนยันการลบข้อมูล", MessageBoxButtons.OKCancel, MessageBoxIcon.Information)) = Windows.Forms.DialogResult.OK Then
-            sql = "DELETE FROM Userr WHERE U_User = '" & txtUser.Text & "'   "
+            sql = "DELETE FROM Userr WHERE U_ID = '" & txtID.Text & "'   "
             sqlCmd = New SqlCommand(sql, Conn)
             sqlCmd.ExecuteNonQuery()
             MessageBox.Show("ลบข้อมูลเรียบร้อย", "ผลการลบข้อมูล", MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -243,6 +260,7 @@ Public Class frmUser
         btnSave.Enabled = False
         btncancel.Enabled = True
         btnExit.Enabled = True
+        cmbSex.Enabled = False
         showData()
     End Sub
 
@@ -259,14 +277,15 @@ Public Class frmUser
         Dim sqlDr As SqlDataReader
         Dim sqlCmd As SqlCommand
         txtUser.Text = dgvUserr.Rows(e.RowIndex).Cells(1).Value
-        pk = dgvUserr.Rows(e.RowIndex).Cells(1).Value
+        PKK = dgvUserr.Rows(e.RowIndex).Cells(1).Value
+        pk = dgvUserr.Rows(e.RowIndex).Cells(2).Value
         txtNa.Text = dgvUserr.Rows(e.RowIndex).Cells(2).Value
-        If dgvUserr.Rows(e.RowIndex).Cells(2).Value = "ผู้ดูเเลระบบ" Then
+        If dgvUserr.Rows(e.RowIndex).Cells(3).Value = "ผู้ดูเเลระบบ" Then
             rbtStatus0.Checked = True
         Else
             rbtStatus1.Checked = True
         End If
-        sql = "Select U_ID,U_Pass,U_Add,U_Tel,U_Sex FROM Userr WHERE U_User = '" & txtUser.Text & "'"
+        sql = "Select U_ID,U_Pass,U_Add,U_Tel,U_Sex,U_User FROM Userr WHERE U_User = '" & txtUser.Text & "'"
         sqlCmd = New SqlCommand(sql, Conn)
         sqlDr = sqlCmd.ExecuteReader
         If sqlDr.Read() Then
@@ -279,6 +298,7 @@ Public Class frmUser
             Else
                 cmbSex.SelectedIndex = 1
             End If
+            txtUser.Text = sqlDr.Item(5)
         End If
         sqlDr.Close()
         txtAdd.Enabled = False
@@ -289,7 +309,7 @@ Public Class frmUser
         btnAdd.Enabled = False
         btnEdit.Enabled = True
         btnDelete.Enabled = True
-        If Ed = "0" Then
+        If Ed = "1" Then
             btnDelete.Enabled = False
         Else
             btnDelete.Enabled = True
@@ -297,6 +317,42 @@ Public Class frmUser
         btnSave.Enabled = False
         btncancel.Enabled = True
         btnExit.Enabled = True
-
+        showData()
     End Sub
+
+    Private Sub txtNa_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtNa.KeyPress
+        Select Case Asc(e.KeyChar)
+            Case 58 To 122 ' โค๊ดภาษาอังกฤษ์ตามจริงจะอยู่ที่ 58ถึง122 
+                e.Handled = False
+            Case 8, 13, 32
+                e.Handled = False
+            Case 161 To 240 ' แล้วมาใส่ตรงนี้เป็นคีย์โค๊ดภาษาไทยรวมทั้งตัวสระ+วรรณยุกต์ด้วยน่ะครับ
+                e.Handled = False
+            Case Else
+                e.Handled = True
+                MessageBox.Show("กรุณาระบุข้อมูลเป็นภาษาอังกฤษหรือภาษาไทย")
+        End Select
+    End Sub
+
+    Private Sub txtTel_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtTel.KeyPress
+        Select Case Asc(e.KeyChar)
+            Case 48 To 57
+                e.Handled = False
+            Case 8, 13, 45
+                e.Handled = False
+            Case Else
+                e.Handled = True
+                MessageBox.Show("กรุณาระบุข้อมูลเป็นตัวเลข")
+        End Select
+    End Sub
+
+    Private Sub frmUser_FormClosing(ByVal sender As System.Object, ByVal e As System.Windows.Forms.FormClosingEventArgs) Handles MyBase.FormClosing
+        If MessageBox.Show("คุณต้องการออกจากโปรแกรมหรือไม่?", "Exit Program", MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) = Windows.Forms.DialogResult.OK Then
+            e.Cancel = False
+        Else
+            e.Cancel = True
+        End If
+    End Sub
+
+
 End Class

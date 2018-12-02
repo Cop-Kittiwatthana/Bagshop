@@ -52,128 +52,140 @@ Partial Class frmMember
         Me.GroupBox1.Controls.Add(Me.Label2)
         Me.GroupBox1.Controls.Add(Me.txtID)
         Me.GroupBox1.Controls.Add(Me.Label1)
-        Me.GroupBox1.Location = New System.Drawing.Point(33, 12)
+        Me.GroupBox1.Location = New System.Drawing.Point(30, 15)
+        Me.GroupBox1.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(656, 433)
+        Me.GroupBox1.Padding = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.GroupBox1.Size = New System.Drawing.Size(601, 554)
         Me.GroupBox1.TabIndex = 0
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "ข้อมูลลูกค้า"
         '
         'txtTel
         '
-        Me.txtTel.Location = New System.Drawing.Point(253, 356)
+        Me.txtTel.Location = New System.Drawing.Point(232, 456)
+        Me.txtTel.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.txtTel.Name = "txtTel"
-        Me.txtTel.Size = New System.Drawing.Size(240, 31)
+        Me.txtTel.Size = New System.Drawing.Size(220, 30)
         Me.txtTel.TabIndex = 7
         '
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(131, 356)
+        Me.Label4.Location = New System.Drawing.Point(120, 456)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(82, 25)
+        Me.Label4.Size = New System.Drawing.Size(89, 32)
         Me.Label4.TabIndex = 6
         Me.Label4.Text = "เบอร์โทร"
         '
         'txtAdd
         '
-        Me.txtAdd.Location = New System.Drawing.Point(253, 202)
+        Me.txtAdd.Location = New System.Drawing.Point(232, 259)
+        Me.txtAdd.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.txtAdd.Multiline = True
         Me.txtAdd.Name = "txtAdd"
-        Me.txtAdd.Size = New System.Drawing.Size(240, 136)
+        Me.txtAdd.Size = New System.Drawing.Size(220, 173)
         Me.txtAdd.TabIndex = 5
         '
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(131, 205)
+        Me.Label3.Location = New System.Drawing.Point(120, 262)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(46, 25)
+        Me.Label3.Size = New System.Drawing.Size(52, 32)
         Me.Label3.TabIndex = 4
         Me.Label3.Text = "ที่อยู่"
         '
         'txtNa
         '
-        Me.txtNa.Location = New System.Drawing.Point(253, 146)
+        Me.txtNa.Location = New System.Drawing.Point(232, 187)
+        Me.txtNa.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.txtNa.Name = "txtNa"
-        Me.txtNa.Size = New System.Drawing.Size(240, 31)
+        Me.txtNa.Size = New System.Drawing.Size(220, 30)
         Me.txtNa.TabIndex = 3
         '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(131, 146)
+        Me.Label2.Location = New System.Drawing.Point(120, 187)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(77, 25)
+        Me.Label2.Size = New System.Drawing.Size(88, 32)
         Me.Label2.TabIndex = 2
         Me.Label2.Text = "ชื่อลูกค้า"
         '
         'txtID
         '
-        Me.txtID.Location = New System.Drawing.Point(253, 79)
+        Me.txtID.Location = New System.Drawing.Point(232, 101)
+        Me.txtID.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.txtID.Name = "txtID"
-        Me.txtID.Size = New System.Drawing.Size(240, 31)
+        Me.txtID.Size = New System.Drawing.Size(220, 30)
         Me.txtID.TabIndex = 1
         '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(131, 79)
+        Me.Label1.Location = New System.Drawing.Point(120, 101)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(88, 25)
+        Me.Label1.Size = New System.Drawing.Size(101, 32)
         Me.Label1.TabIndex = 0
         Me.Label1.Text = "รหัสลูกค้า"
         '
         'btnExit
         '
-        Me.btnExit.Location = New System.Drawing.Point(577, 476)
+        Me.btnExit.Location = New System.Drawing.Point(547, 609)
+        Me.btnExit.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.btnExit.Name = "btnExit"
-        Me.btnExit.Size = New System.Drawing.Size(80, 34)
+        Me.btnExit.Size = New System.Drawing.Size(73, 44)
         Me.btnExit.TabIndex = 30
         Me.btnExit.Text = "ออก"
         Me.btnExit.UseVisualStyleBackColor = True
         '
         'btncancel
         '
-        Me.btncancel.Location = New System.Drawing.Point(480, 476)
+        Me.btncancel.Location = New System.Drawing.Point(450, 609)
+        Me.btncancel.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.btncancel.Name = "btncancel"
-        Me.btncancel.Size = New System.Drawing.Size(80, 34)
+        Me.btncancel.Size = New System.Drawing.Size(91, 44)
         Me.btncancel.TabIndex = 29
         Me.btncancel.Text = "ยกเลิก"
         Me.btncancel.UseVisualStyleBackColor = True
         '
         'btnSave
         '
-        Me.btnSave.Location = New System.Drawing.Point(279, 476)
+        Me.btnSave.Location = New System.Drawing.Point(256, 609)
+        Me.btnSave.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.btnSave.Name = "btnSave"
-        Me.btnSave.Size = New System.Drawing.Size(80, 34)
+        Me.btnSave.Size = New System.Drawing.Size(85, 44)
         Me.btnSave.TabIndex = 28
         Me.btnSave.Text = "บันทึก"
         Me.btnSave.UseVisualStyleBackColor = True
         '
         'btnEdit
         '
-        Me.btnEdit.Location = New System.Drawing.Point(180, 476)
+        Me.btnEdit.Location = New System.Drawing.Point(165, 609)
+        Me.btnEdit.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.btnEdit.Name = "btnEdit"
-        Me.btnEdit.Size = New System.Drawing.Size(80, 34)
+        Me.btnEdit.Size = New System.Drawing.Size(73, 44)
         Me.btnEdit.TabIndex = 26
         Me.btnEdit.Text = "แก้ไข"
         Me.btnEdit.UseVisualStyleBackColor = True
         '
         'btnDelete
         '
-        Me.btnDelete.Location = New System.Drawing.Point(378, 476)
+        Me.btnDelete.Location = New System.Drawing.Point(359, 609)
+        Me.btnDelete.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.btnDelete.Name = "btnDelete"
-        Me.btnDelete.Size = New System.Drawing.Size(80, 34)
+        Me.btnDelete.Size = New System.Drawing.Size(73, 44)
         Me.btnDelete.TabIndex = 27
         Me.btnDelete.Text = "ลบ"
         Me.btnDelete.UseVisualStyleBackColor = True
         '
         'btnAdd
         '
-        Me.btnAdd.Location = New System.Drawing.Point(78, 476)
+        Me.btnAdd.Location = New System.Drawing.Point(72, 609)
+        Me.btnAdd.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.btnAdd.Name = "btnAdd"
-        Me.btnAdd.Size = New System.Drawing.Size(80, 34)
+        Me.btnAdd.Size = New System.Drawing.Size(73, 44)
         Me.btnAdd.TabIndex = 25
         Me.btnAdd.Text = "เพิ่ม"
         Me.btnAdd.UseVisualStyleBackColor = True
@@ -181,16 +193,17 @@ Partial Class frmMember
         'dgvMember
         '
         Me.dgvMember.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvMember.Location = New System.Drawing.Point(24, 538)
+        Me.dgvMember.Location = New System.Drawing.Point(22, 689)
+        Me.dgvMember.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.dgvMember.Name = "dgvMember"
-        Me.dgvMember.Size = New System.Drawing.Size(683, 177)
+        Me.dgvMember.Size = New System.Drawing.Size(626, 227)
         Me.dgvMember.TabIndex = 31
         '
         'frmMember
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(12.0!, 25.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(11.0!, 32.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(730, 747)
+        Me.ClientSize = New System.Drawing.Size(669, 956)
         Me.Controls.Add(Me.dgvMember)
         Me.Controls.Add(Me.btnExit)
         Me.Controls.Add(Me.btncancel)
@@ -199,8 +212,8 @@ Partial Class frmMember
         Me.Controls.Add(Me.btnDelete)
         Me.Controls.Add(Me.btnAdd)
         Me.Controls.Add(Me.GroupBox1)
-        Me.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(222, Byte))
-        Me.Margin = New System.Windows.Forms.Padding(6)
+        Me.Font = New System.Drawing.Font("Ekkamai Standard", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(222, Byte))
+        Me.Margin = New System.Windows.Forms.Padding(6, 8, 6, 8)
         Me.Name = "frmMember"
         Me.Text = "ข้อมูลลูกค้า "
         Me.GroupBox1.ResumeLayout(False)

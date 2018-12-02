@@ -26,9 +26,9 @@ Public Class frmCategory
         dgvCate.ReadOnly = True
         dgvCate.DataSource = ds.Tables("Cate")
 
-        dgvCate.Columns(0).HeaderText = "รหัสหมวดหมู่"
+        dgvCate.Columns(0).HeaderText = "รหัสประเภท"
         dgvCate.Columns(0).Width = 200
-        dgvCate.Columns(1).HeaderText = "ชื่อหมวดหมู่"
+        dgvCate.Columns(1).HeaderText = "ชื่อประเภท"
         dgvCate.Columns(1).Width = 200
     End Sub
 
@@ -94,7 +94,7 @@ Public Class frmCategory
             sqlCmd = New SqlCommand(sql, Conn)
             sqlDr = sqlCmd.ExecuteReader
             If sqlDr.Read() Then
-                MessageBox.Show("ชื่อหมวดหมู่ ซ้ำ กรุณากรอกใหม่", "ตรวจสอบ", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                MessageBox.Show("ชื่อประเภท ซ้ำ กรุณากรอกใหม่", "ตรวจสอบ", MessageBoxButtons.OK, MessageBoxIcon.Information)
                 txtNa.Focus()
                 sqlDr.Close()
                 Exit Sub
@@ -204,4 +204,5 @@ Public Class frmCategory
                 MessageBox.Show("กรุณาระบุข้อมูลเป็นภาษาอังกฤษหรือภาษาไทย")
         End Select
     End Sub
+
 End Class
