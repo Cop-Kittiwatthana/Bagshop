@@ -55,4 +55,7 @@ Public Class frmAdminMenu
         lbl1.Text = U_Name
     End Sub
 
+    Private Sub lbl1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles lbl1.Click
+
+    End Sub
 End Class

@@ -25,6 +25,7 @@ Partial Class login
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(login))
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.Label1 = New System.Windows.Forms.Label()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.btnlogin = New System.Windows.Forms.Button()
         Me.txtPass = New System.Windows.Forms.TextBox()
@@ -32,7 +33,6 @@ Partial Class login
         Me.btnClean = New System.Windows.Forms.Button()
         Me.txtUser = New System.Windows.Forms.TextBox()
         Me.PictureBox2 = New System.Windows.Forms.PictureBox()
-        Me.Label1 = New System.Windows.Forms.Label()
         Me.Panel1.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BindingSource1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -48,6 +48,15 @@ Partial Class login
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(437, 48)
         Me.Panel1.TabIndex = 1
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(9, 9)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(81, 25)
+        Me.Label1.TabIndex = 1
+        Me.Label1.Text = "LOGIN"
         '
         'PictureBox1
         '
@@ -73,6 +82,7 @@ Partial Class login
         Me.txtPass.BackColor = System.Drawing.SystemColors.ButtonFace
         Me.txtPass.Font = New System.Drawing.Font("Ekkamai Standard", 24.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(222, Byte))
         Me.txtPass.Location = New System.Drawing.Point(82, 347)
+        Me.txtPass.MaxLength = 50
         Me.txtPass.Multiline = True
         Me.txtPass.Name = "txtPass"
         Me.txtPass.Size = New System.Drawing.Size(258, 65)
@@ -94,6 +104,7 @@ Partial Class login
         Me.txtUser.BackColor = System.Drawing.SystemColors.ButtonFace
         Me.txtUser.Font = New System.Drawing.Font("Ekkamai Standard", 24.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(222, Byte))
         Me.txtUser.Location = New System.Drawing.Point(82, 258)
+        Me.txtUser.MaxLength = 50
         Me.txtUser.Multiline = True
         Me.txtUser.Name = "txtUser"
         Me.txtUser.Size = New System.Drawing.Size(258, 65)
@@ -110,15 +121,6 @@ Partial Class login
         Me.PictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.PictureBox2.TabIndex = 8
         Me.PictureBox2.TabStop = False
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(9, 9)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(81, 25)
-        Me.Label1.TabIndex = 1
-        Me.Label1.Text = "LOGIN"
         '
         'login
         '

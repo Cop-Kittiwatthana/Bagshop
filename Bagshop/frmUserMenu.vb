@@ -1,4 +1,5 @@
-﻿Public Class frmUserMenu
+﻿Imports System.Data.SqlClient
+Public Class frmUserMenu
 
     Private Sub frmUserMenu_FormClosing(ByVal sender As System.Object, ByVal e As System.Windows.Forms.FormClosingEventArgs) Handles MyBase.FormClosing
         If MessageBox.Show("คุณต้องการออกจากโปรแกรมหรือไม่?", "Exit Program", MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) = Windows.Forms.DialogResult.OK Then
@@ -27,6 +28,7 @@
     End Sub
 
     Private Sub BtnReport_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnReport.Click
+        Report.Show()
 
     End Sub
 
@@ -36,6 +38,14 @@
 
     Private Sub btnExit_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnExit.Click
         Application.Exit()
+
+    End Sub
+
+    Private Sub frmUserMenu_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        lbl1.Text = U_Name
+    End Sub
+
+    Private Sub lbl1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
 
     End Sub
 End Class

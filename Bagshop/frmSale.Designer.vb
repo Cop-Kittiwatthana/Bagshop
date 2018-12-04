@@ -96,7 +96,7 @@ Partial Class frmSale
         Me.Label2.AutoSize = True
         Me.Label2.Location = New System.Drawing.Point(10, 129)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(78, 29)
+        Me.Label2.Size = New System.Drawing.Size(79, 29)
         Me.Label2.TabIndex = 3
         Me.Label2.Text = "วันที่ขาย"
         '
@@ -140,7 +140,7 @@ Partial Class frmSale
         Me.Label4.AutoSize = True
         Me.Label4.Location = New System.Drawing.Point(12, 293)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(103, 29)
+        Me.Label4.Size = New System.Drawing.Size(104, 29)
         Me.Label4.TabIndex = 7
         Me.Label4.Text = "รหัสกระเป๋า"
         '
@@ -166,7 +166,7 @@ Partial Class frmSale
         Me.Label6.AutoSize = True
         Me.Label6.Location = New System.Drawing.Point(5, 452)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(110, 29)
+        Me.Label6.Size = New System.Drawing.Size(111, 29)
         Me.Label6.TabIndex = 11
         Me.Label6.Text = "จำนวนที่ขาย"
         '
@@ -174,6 +174,7 @@ Partial Class frmSale
         '
         Me.txtsale.Location = New System.Drawing.Point(112, 452)
         Me.txtsale.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.txtsale.MaxLength = 10
         Me.txtsale.Name = "txtsale"
         Me.txtsale.Size = New System.Drawing.Size(117, 28)
         Me.txtsale.TabIndex = 12
@@ -208,7 +209,7 @@ Partial Class frmSale
         Me.Label8.AutoSize = True
         Me.Label8.Location = New System.Drawing.Point(345, 293)
         Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(90, 29)
+        Me.Label8.Size = New System.Drawing.Size(91, 29)
         Me.Label8.TabIndex = 15
         Me.Label8.Text = "ชื่อกระเป๋า"
         '
@@ -217,7 +218,7 @@ Partial Class frmSale
         Me.Label9.AutoSize = True
         Me.Label9.Location = New System.Drawing.Point(315, 368)
         Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(128, 29)
+        Me.Label9.Size = New System.Drawing.Size(129, 29)
         Me.Label9.TabIndex = 17
         Me.Label9.Text = "จำนวนคงเหลือ"
         '
@@ -287,7 +288,7 @@ Partial Class frmSale
         Me.dgvProduct.Location = New System.Drawing.Point(660, 36)
         Me.dgvProduct.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.dgvProduct.Name = "dgvProduct"
-        Me.dgvProduct.Size = New System.Drawing.Size(361, 529)
+        Me.dgvProduct.Size = New System.Drawing.Size(377, 529)
         Me.dgvProduct.TabIndex = 22
         '
         'dgvSale
@@ -340,7 +341,7 @@ Partial Class frmSale
         '
         'btnExit
         '
-        Me.btnExit.Location = New System.Drawing.Point(347, 914)
+        Me.btnExit.Location = New System.Drawing.Point(443, 850)
         Me.btnExit.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.btnExit.Name = "btnExit"
         Me.btnExit.Size = New System.Drawing.Size(66, 40)
@@ -350,7 +351,7 @@ Partial Class frmSale
         '
         'btncancel
         '
-        Me.btncancel.Location = New System.Drawing.Point(216, 913)
+        Me.btncancel.Location = New System.Drawing.Point(312, 849)
         Me.btncancel.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.btncancel.Name = "btncancel"
         Me.btncancel.Size = New System.Drawing.Size(94, 40)
@@ -360,7 +361,7 @@ Partial Class frmSale
         '
         'btnSave
         '
-        Me.btnSave.Location = New System.Drawing.Point(113, 914)
+        Me.btnSave.Location = New System.Drawing.Point(209, 850)
         Me.btnSave.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.btnSave.Name = "btnSave"
         Me.btnSave.Size = New System.Drawing.Size(85, 40)
@@ -370,7 +371,7 @@ Partial Class frmSale
         '
         'btnAdd
         '
-        Me.btnAdd.Location = New System.Drawing.Point(18, 914)
+        Me.btnAdd.Location = New System.Drawing.Point(114, 850)
         Me.btnAdd.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.btnAdd.Name = "btnAdd"
         Me.btnAdd.Size = New System.Drawing.Size(66, 40)
@@ -380,7 +381,7 @@ Partial Class frmSale
         '
         'btnPrint
         '
-        Me.btnPrint.Location = New System.Drawing.Point(480, 914)
+        Me.btnPrint.Location = New System.Drawing.Point(548, 849)
         Me.btnPrint.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.btnPrint.Name = "btnPrint"
         Me.btnPrint.Size = New System.Drawing.Size(120, 40)
@@ -391,16 +392,16 @@ Partial Class frmSale
         'Label10
         '
         Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(687, 914)
+        Me.Label10.Location = New System.Drawing.Point(707, 853)
         Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(80, 29)
+        Me.Label10.Size = New System.Drawing.Size(81, 29)
         Me.Label10.TabIndex = 36
         Me.Label10.Text = "รวมยอด"
         '
         'Label11
         '
         Me.Label11.AutoSize = True
-        Me.Label11.Location = New System.Drawing.Point(954, 914)
+        Me.Label11.Location = New System.Drawing.Point(974, 853)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(47, 29)
         Me.Label11.TabIndex = 37
@@ -410,7 +411,7 @@ Partial Class frmSale
         '
         Me.lblSum.AutoSize = True
         Me.lblSum.Font = New System.Drawing.Font("Microsoft Sans Serif", 20.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(222, Byte))
-        Me.lblSum.Location = New System.Drawing.Point(791, 914)
+        Me.lblSum.Location = New System.Drawing.Point(811, 853)
         Me.lblSum.Name = "lblSum"
         Me.lblSum.Size = New System.Drawing.Size(71, 31)
         Me.lblSum.TabIndex = 38

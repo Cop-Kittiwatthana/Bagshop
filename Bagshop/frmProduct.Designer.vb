@@ -24,15 +24,11 @@ Partial Class frmProduct
     Private Sub InitializeComponent()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.lbl8 = New System.Windows.Forms.Label()
-        Me.txtColor = New System.Windows.Forms.TextBox()
         Me.ptb1 = New System.Windows.Forms.PictureBox()
         Me.txtDetail = New System.Windows.Forms.TextBox()
         Me.Label7 = New System.Windows.Forms.Label()
-        Me.txtAmount = New System.Windows.Forms.TextBox()
-        Me.Label6 = New System.Windows.Forms.Label()
         Me.txtPrice = New System.Windows.Forms.TextBox()
         Me.Label5 = New System.Windows.Forms.Label()
-        Me.Label4 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.cmbCate = New System.Windows.Forms.ComboBox()
         Me.txtName = New System.Windows.Forms.TextBox()
@@ -54,15 +50,11 @@ Partial Class frmProduct
         'GroupBox1
         '
         Me.GroupBox1.Controls.Add(Me.lbl8)
-        Me.GroupBox1.Controls.Add(Me.txtColor)
         Me.GroupBox1.Controls.Add(Me.ptb1)
         Me.GroupBox1.Controls.Add(Me.txtDetail)
         Me.GroupBox1.Controls.Add(Me.Label7)
-        Me.GroupBox1.Controls.Add(Me.txtAmount)
-        Me.GroupBox1.Controls.Add(Me.Label6)
         Me.GroupBox1.Controls.Add(Me.txtPrice)
         Me.GroupBox1.Controls.Add(Me.Label5)
-        Me.GroupBox1.Controls.Add(Me.Label4)
         Me.GroupBox1.Controls.Add(Me.Label3)
         Me.GroupBox1.Controls.Add(Me.cmbCate)
         Me.GroupBox1.Controls.Add(Me.txtName)
@@ -73,7 +65,7 @@ Partial Class frmProduct
         Me.GroupBox1.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Padding = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.GroupBox1.Size = New System.Drawing.Size(640, 554)
+        Me.GroupBox1.Size = New System.Drawing.Size(640, 520)
         Me.GroupBox1.TabIndex = 0
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "ข้อมูลกระเป๋า"
@@ -83,17 +75,9 @@ Partial Class frmProduct
         Me.lbl8.AutoSize = True
         Me.lbl8.Location = New System.Drawing.Point(388, 415)
         Me.lbl8.Name = "lbl8"
-        Me.lbl8.Size = New System.Drawing.Size(235, 32)
+        Me.lbl8.Size = New System.Drawing.Size(238, 32)
         Me.lbl8.TabIndex = 17
         Me.lbl8.Text = "ดับเบิ้ลคลิกเพื่อเพิ่มรูปภาพ"
-        '
-        'txtColor
-        '
-        Me.txtColor.Location = New System.Drawing.Point(128, 216)
-        Me.txtColor.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.txtColor.Name = "txtColor"
-        Me.txtColor.Size = New System.Drawing.Size(109, 30)
-        Me.txtColor.TabIndex = 16
         '
         'ptb1
         '
@@ -109,8 +93,9 @@ Partial Class frmProduct
         '
         'txtDetail
         '
-        Me.txtDetail.Location = New System.Drawing.Point(128, 409)
+        Me.txtDetail.Location = New System.Drawing.Point(127, 323)
         Me.txtDetail.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.txtDetail.MaxLength = 150
         Me.txtDetail.Multiline = True
         Me.txtDetail.Name = "txtDetail"
         Me.txtDetail.Size = New System.Drawing.Size(203, 120)
@@ -119,33 +104,17 @@ Partial Class frmProduct
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(6, 412)
+        Me.Label7.Location = New System.Drawing.Point(5, 326)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(111, 64)
         Me.Label7.TabIndex = 13
         Me.Label7.Text = "รายละเอียด" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "   กระเป๋า"
         '
-        'txtAmount
-        '
-        Me.txtAmount.Location = New System.Drawing.Point(129, 346)
-        Me.txtAmount.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.txtAmount.Name = "txtAmount"
-        Me.txtAmount.Size = New System.Drawing.Size(139, 30)
-        Me.txtAmount.TabIndex = 12
-        '
-        'Label6
-        '
-        Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(47, 349)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(75, 32)
-        Me.Label6.TabIndex = 11
-        Me.Label6.Text = "จำนวน"
-        '
         'txtPrice
         '
-        Me.txtPrice.Location = New System.Drawing.Point(129, 282)
+        Me.txtPrice.Location = New System.Drawing.Point(128, 196)
         Me.txtPrice.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.txtPrice.MaxLength = 10
         Me.txtPrice.Name = "txtPrice"
         Me.txtPrice.Size = New System.Drawing.Size(139, 30)
         Me.txtPrice.TabIndex = 10
@@ -153,20 +122,11 @@ Partial Class frmProduct
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(61, 285)
+        Me.Label5.Location = New System.Drawing.Point(60, 199)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(62, 32)
         Me.Label5.TabIndex = 9
         Me.Label5.Text = "ราคา"
-        '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(87, 219)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(27, 32)
-        Me.Label4.TabIndex = 7
-        Me.Label4.Text = "สี"
         '
         'Label3
         '
@@ -179,17 +139,19 @@ Partial Class frmProduct
         '
         'cmbCate
         '
+        Me.cmbCate.FlatStyle = System.Windows.Forms.FlatStyle.System
         Me.cmbCate.FormattingEnabled = True
-        Me.cmbCate.Location = New System.Drawing.Point(506, 69)
+        Me.cmbCate.Location = New System.Drawing.Point(463, 67)
         Me.cmbCate.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.cmbCate.Name = "cmbCate"
-        Me.cmbCate.Size = New System.Drawing.Size(117, 40)
+        Me.cmbCate.Size = New System.Drawing.Size(160, 40)
         Me.cmbCate.TabIndex = 4
         '
         'txtName
         '
         Me.txtName.Location = New System.Drawing.Point(128, 138)
         Me.txtName.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.txtName.MaxLength = 50
         Me.txtName.Name = "txtName"
         Me.txtName.Size = New System.Drawing.Size(175, 30)
         Me.txtName.TabIndex = 3
@@ -197,7 +159,7 @@ Partial Class frmProduct
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(366, 69)
+        Me.Label2.Location = New System.Drawing.Point(318, 72)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(139, 32)
         Me.Label2.TabIndex = 2
@@ -207,6 +169,7 @@ Partial Class frmProduct
         '
         Me.txtID.Location = New System.Drawing.Point(128, 69)
         Me.txtID.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.txtID.MaxLength = 10
         Me.txtID.Name = "txtID"
         Me.txtID.Size = New System.Drawing.Size(175, 30)
         Me.txtID.TabIndex = 1
@@ -317,11 +280,8 @@ Partial Class frmProduct
     Friend WithEvents ptb1 As System.Windows.Forms.PictureBox
     Friend WithEvents txtDetail As System.Windows.Forms.TextBox
     Friend WithEvents Label7 As System.Windows.Forms.Label
-    Friend WithEvents txtAmount As System.Windows.Forms.TextBox
-    Friend WithEvents Label6 As System.Windows.Forms.Label
     Friend WithEvents txtPrice As System.Windows.Forms.TextBox
     Friend WithEvents Label5 As System.Windows.Forms.Label
-    Friend WithEvents Label4 As System.Windows.Forms.Label
     Friend WithEvents Label3 As System.Windows.Forms.Label
     Friend WithEvents cmbCate As System.Windows.Forms.ComboBox
     Friend WithEvents txtName As System.Windows.Forms.TextBox
@@ -335,6 +295,5 @@ Partial Class frmProduct
     Friend WithEvents btnDelete As System.Windows.Forms.Button
     Friend WithEvents btnAdd As System.Windows.Forms.Button
     Friend WithEvents dgvProduct As System.Windows.Forms.DataGridView
-    Friend WithEvents txtColor As System.Windows.Forms.TextBox
     Friend WithEvents lbl8 As System.Windows.Forms.Label
 End Class

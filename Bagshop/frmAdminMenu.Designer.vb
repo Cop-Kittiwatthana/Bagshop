@@ -74,9 +74,11 @@ Partial Class frmAdminMenu
         'Label1
         '
         Me.Label1.AutoSize = True
+        Me.Label1.Font = New System.Drawing.Font("Ekkamai Standard", 36.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(222, Byte))
+        Me.Label1.ForeColor = System.Drawing.Color.Blue
         Me.Label1.Location = New System.Drawing.Point(361, 29)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(123, 32)
+        Me.Label1.Size = New System.Drawing.Size(276, 73)
         Me.Label1.TabIndex = 14
         Me.Label1.Text = "ยินดีต้อนรับ "
         '
@@ -84,7 +86,7 @@ Partial Class frmAdminMenu
         '
         Me.lbl1.AutoSize = True
         Me.lbl1.Font = New System.Drawing.Font("Ekkamai Standard", 24.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(222, Byte))
-        Me.lbl1.Location = New System.Drawing.Point(369, 92)
+        Me.lbl1.Location = New System.Drawing.Point(386, 123)
         Me.lbl1.Name = "lbl1"
         Me.lbl1.Size = New System.Drawing.Size(46, 49)
         Me.lbl1.TabIndex = 15

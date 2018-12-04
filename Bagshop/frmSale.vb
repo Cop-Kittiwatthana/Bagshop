@@ -12,16 +12,16 @@ Public Class frmSale
 
         Module1.Connect()
         'sql "SELECT E_Usename, E_Name From Employee WHERE E_Usename = '" & User_Na & "'"
-        sql = "SELECT U_ID, U_Name From Userr"
+        sql = "SELECT U_USer, U_Name From Userr"
 
         da = New SqlDataAdapter(sql, Conn)
         da.Fill(ds, "Userr")
         If ds.Tables("Userr").Rows.Count <> 0 Then
             cmbUser.DataSource = ds.Tables("Userr")
-            cmbUser.ValueMember = "U_ID"
+            cmbUser.ValueMember = "U_User"
             cmbUser.DisplayMember = "U_Name"
         End If
-        sql = "SELECT P_ID,P_Name,P_Price,P_Amount FROM Product ORDER BY P_Name"
+        sql = "SELECT p.P_ID,p.P_Name,p.P_Price,pr.Pr_Amount FROM Product p , Property pr where p.P_ID = pr.P_ID"
         da = New SqlDataAdapter(sql, Conn)
         da.Fill(ds, "Product")
         dgvProduct.ReadOnly = True
@@ -196,7 +196,7 @@ Public Class frmSale
             Exit Sub
         End If
         orderDate = Today.Date.ToString("s")
-        sql = "insert into Orderr (O_ID,O_Date,Net,M_ID,U_ID)"
+        sql = "insert into Orderr (O_ID,O_Date,Net,M_ID,U_User)"
         sql &= "values('" & CStr(txtID.Text) & "','" & orderDate & "','" & CDbl(lblSum.Text) & "','" & CStr(txtMID.Text) & "','" & cmbUser.SelectedValue & "')"
         sqlCmd = New SqlCommand(sql, Conn)
         sqlCmd.ExecuteNonQuery()
@@ -225,7 +225,6 @@ Public Class frmSale
         Next
         MessageBox.Show("บันทึกข้อมูลเรียบร้อย", "ยืนยันการบันทึก", MessageBoxButtons.OK, MessageBoxIcon.Information)
         txtID.Text = saleID
-        txtID.Text = ""
         txtPID.Enabled = False
         txtPNa.Enabled = False
         cmbUser.Enabled = False
@@ -285,7 +284,7 @@ Public Class frmSale
             MessageBox.Show("กรูณาทำรายการก่อน", "คำเตือน", MessageBoxButtons.OK, MessageBoxIcon.Information)
             Exit Sub
         End If
-        'frmReportSale.Show()
+        frmSlipSale.Show()
     End Sub
 
     Private Sub btnSearch_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSearch.Click

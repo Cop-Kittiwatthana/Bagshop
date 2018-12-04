@@ -60,6 +60,7 @@ Partial Class frmCategory
         '
         Me.txtID.Location = New System.Drawing.Point(193, 77)
         Me.txtID.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.txtID.MaxLength = 4
         Me.txtID.Name = "txtID"
         Me.txtID.Size = New System.Drawing.Size(201, 30)
         Me.txtID.TabIndex = 2
@@ -68,6 +69,7 @@ Partial Class frmCategory
         '
         Me.txtNa.Location = New System.Drawing.Point(193, 163)
         Me.txtNa.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.txtNa.MaxLength = 50
         Me.txtNa.Name = "txtNa"
         Me.txtNa.Size = New System.Drawing.Size(201, 30)
         Me.txtNa.TabIndex = 3

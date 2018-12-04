@@ -1,7 +1,7 @@
 ﻿Public Class Report
 
     Private Sub Report_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        If Ed = 1 Then
+        If User_Status = 1 Then
             cmbreport.Items.Add("รายงานข้อมูลลูกค้า")
             cmbreport.Items.Add("รายงานข้อมูลการขาย")
             cmbreport.Items.Add("รายงานข้อมูลสินค้าทั้งหมด")
@@ -19,7 +19,7 @@
     End Sub
 
     Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
-        If Ed = 1 Then
+        If User_Status = 1 Then
             If cmbreport.SelectedIndex = 0 Then
                 frmReportMember.Show()
             End If
@@ -54,5 +54,13 @@
 
 
 
+    End Sub
+
+    Private Sub Report_FormClosing(ByVal sender As System.Object, ByVal e As System.Windows.Forms.FormClosingEventArgs) Handles MyBase.FormClosing
+        If MessageBox.Show("คุณต้องการออกจากโปรแกรมหรือไม่?", "Exit Program", MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) = Windows.Forms.DialogResult.OK Then
+            e.Cancel = False
+        Else
+            e.Cancel = True
+        End If
     End Sub
 End Class

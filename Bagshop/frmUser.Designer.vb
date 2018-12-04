@@ -72,6 +72,7 @@ Partial Class frmUser
         '
         Me.txtUser.Location = New System.Drawing.Point(157, 45)
         Me.txtUser.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.txtUser.MaxLength = 50
         Me.txtUser.Name = "txtUser"
         Me.txtUser.Size = New System.Drawing.Size(203, 28)
         Me.txtUser.TabIndex = 2
@@ -80,6 +81,7 @@ Partial Class frmUser
         '
         Me.txtPass.Location = New System.Drawing.Point(157, 95)
         Me.txtPass.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.txtPass.MaxLength = 50
         Me.txtPass.Name = "txtPass"
         Me.txtPass.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
         Me.txtPass.Size = New System.Drawing.Size(203, 28)
@@ -90,6 +92,7 @@ Partial Class frmUser
         Me.txtID.Enabled = False
         Me.txtID.Location = New System.Drawing.Point(459, 46)
         Me.txtID.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.txtID.MaxLength = 4
         Me.txtID.Name = "txtID"
         Me.txtID.ReadOnly = True
         Me.txtID.Size = New System.Drawing.Size(91, 28)
@@ -108,6 +111,7 @@ Partial Class frmUser
         '
         Me.txtNa.Location = New System.Drawing.Point(157, 151)
         Me.txtNa.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.txtNa.MaxLength = 50
         Me.txtNa.Name = "txtNa"
         Me.txtNa.Size = New System.Drawing.Size(203, 28)
         Me.txtNa.TabIndex = 7
@@ -116,6 +120,7 @@ Partial Class frmUser
         '
         Me.txtAdd.Location = New System.Drawing.Point(157, 216)
         Me.txtAdd.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.txtAdd.MaxLength = 150
         Me.txtAdd.Multiline = True
         Me.txtAdd.Name = "txtAdd"
         Me.txtAdd.Size = New System.Drawing.Size(203, 133)
@@ -152,6 +157,7 @@ Partial Class frmUser
         '
         Me.txtTel.Location = New System.Drawing.Point(157, 382)
         Me.txtTel.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.txtTel.MaxLength = 10
         Me.txtTel.Name = "txtTel"
         Me.txtTel.Size = New System.Drawing.Size(203, 28)
         Me.txtTel.TabIndex = 13
@@ -230,7 +236,7 @@ Partial Class frmUser
         Me.Label7.AutoSize = True
         Me.Label7.Location = New System.Drawing.Point(50, 440)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(54, 29)
+        Me.Label7.Size = New System.Drawing.Size(55, 29)
         Me.Label7.TabIndex = 19
         Me.Label7.Text = "ระดับ"
         '
@@ -240,7 +246,7 @@ Partial Class frmUser
         Me.rbtStatus0.Location = New System.Drawing.Point(160, 440)
         Me.rbtStatus0.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.rbtStatus0.Name = "rbtStatus0"
-        Me.rbtStatus0.Size = New System.Drawing.Size(116, 33)
+        Me.rbtStatus0.Size = New System.Drawing.Size(117, 33)
         Me.rbtStatus0.TabIndex = 20
         Me.rbtStatus0.TabStop = True
         Me.rbtStatus0.Text = "ผู้ดูแลระบบ"

@@ -65,6 +65,7 @@ Partial Class frmMember
         '
         Me.txtTel.Location = New System.Drawing.Point(232, 456)
         Me.txtTel.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.txtTel.MaxLength = 10
         Me.txtTel.Name = "txtTel"
         Me.txtTel.Size = New System.Drawing.Size(220, 30)
         Me.txtTel.TabIndex = 7
@@ -82,6 +83,7 @@ Partial Class frmMember
         '
         Me.txtAdd.Location = New System.Drawing.Point(232, 259)
         Me.txtAdd.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.txtAdd.MaxLength = 150
         Me.txtAdd.Multiline = True
         Me.txtAdd.Name = "txtAdd"
         Me.txtAdd.Size = New System.Drawing.Size(220, 173)
@@ -100,6 +102,7 @@ Partial Class frmMember
         '
         Me.txtNa.Location = New System.Drawing.Point(232, 187)
         Me.txtNa.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.txtNa.MaxLength = 50
         Me.txtNa.Name = "txtNa"
         Me.txtNa.Size = New System.Drawing.Size(220, 30)
         Me.txtNa.TabIndex = 3
@@ -117,6 +120,7 @@ Partial Class frmMember
         '
         Me.txtID.Location = New System.Drawing.Point(232, 101)
         Me.txtID.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.txtID.MaxLength = 4
         Me.txtID.Name = "txtID"
         Me.txtID.Size = New System.Drawing.Size(220, 30)
         Me.txtID.TabIndex = 1

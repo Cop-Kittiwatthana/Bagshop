@@ -25,11 +25,11 @@ Partial Class frmUserMenu
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmUserMenu))
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.btnExit = New System.Windows.Forms.Button()
-        Me.PictureBox5 = New System.Windows.Forms.PictureBox()
         Me.btnProperty = New System.Windows.Forms.Button()
-        Me.btnSale = New System.Windows.Forms.Button()
         Me.PictureBox6 = New System.Windows.Forms.PictureBox()
         Me.BtnReport = New System.Windows.Forms.Button()
+        Me.PictureBox5 = New System.Windows.Forms.PictureBox()
+        Me.btnSale = New System.Windows.Forms.Button()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.PictureBox4 = New System.Windows.Forms.PictureBox()
         Me.btnMember = New System.Windows.Forms.Button()
@@ -37,9 +37,11 @@ Partial Class frmUserMenu
         Me.btnProduct = New System.Windows.Forms.Button()
         Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         Me.btnUser = New System.Windows.Forms.Button()
+        Me.lbl1 = New System.Windows.Forms.Label()
+        Me.Label1 = New System.Windows.Forms.Label()
         Me.Panel2.SuspendLayout()
-        CType(Me.PictureBox5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox6, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PictureBox5, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
         CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -67,17 +69,6 @@ Partial Class frmUserMenu
         Me.btnExit.Text = "Exit"
         Me.btnExit.UseVisualStyleBackColor = False
         '
-        'PictureBox5
-        '
-        Me.PictureBox5.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
-        Me.PictureBox5.Image = CType(resources.GetObject("PictureBox5.Image"), System.Drawing.Image)
-        Me.PictureBox5.Location = New System.Drawing.Point(22, 247)
-        Me.PictureBox5.Name = "PictureBox5"
-        Me.PictureBox5.Size = New System.Drawing.Size(67, 64)
-        Me.PictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.PictureBox5.TabIndex = 10
-        Me.PictureBox5.TabStop = False
-        '
         'btnProperty
         '
         Me.btnProperty.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
@@ -87,17 +78,6 @@ Partial Class frmUserMenu
         Me.btnProperty.TabIndex = 13
         Me.btnProperty.Text = "ข้อมูลสีและจำนวน"
         Me.btnProperty.UseVisualStyleBackColor = False
-        '
-        'btnSale
-        '
-        Me.btnSale.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
-        Me.btnSale.Location = New System.Drawing.Point(5, 240)
-        Me.btnSale.Name = "btnSale"
-        Me.btnSale.Size = New System.Drawing.Size(238, 81)
-        Me.btnSale.TabIndex = 9
-        Me.btnSale.Text = "ข้อมูลการขาย"
-        Me.btnSale.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.btnSale.UseVisualStyleBackColor = False
         '
         'PictureBox6
         '
@@ -120,6 +100,28 @@ Partial Class frmUserMenu
         Me.BtnReport.Text = "รายงาน"
         Me.BtnReport.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.BtnReport.UseVisualStyleBackColor = False
+        '
+        'PictureBox5
+        '
+        Me.PictureBox5.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
+        Me.PictureBox5.Image = CType(resources.GetObject("PictureBox5.Image"), System.Drawing.Image)
+        Me.PictureBox5.Location = New System.Drawing.Point(22, 247)
+        Me.PictureBox5.Name = "PictureBox5"
+        Me.PictureBox5.Size = New System.Drawing.Size(67, 64)
+        Me.PictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox5.TabIndex = 10
+        Me.PictureBox5.TabStop = False
+        '
+        'btnSale
+        '
+        Me.btnSale.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
+        Me.btnSale.Location = New System.Drawing.Point(5, 240)
+        Me.btnSale.Name = "btnSale"
+        Me.btnSale.Size = New System.Drawing.Size(238, 81)
+        Me.btnSale.TabIndex = 9
+        Me.btnSale.Text = "ข้อมูลการขาย"
+        Me.btnSale.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.btnSale.UseVisualStyleBackColor = False
         '
         'Panel1
         '
@@ -201,25 +203,49 @@ Partial Class frmUserMenu
         Me.btnUser.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.btnUser.UseVisualStyleBackColor = False
         '
+        'lbl1
+        '
+        Me.lbl1.AutoSize = True
+        Me.lbl1.Font = New System.Drawing.Font("Ekkamai Standard", 24.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(222, Byte))
+        Me.lbl1.Location = New System.Drawing.Point(338, 107)
+        Me.lbl1.Name = "lbl1"
+        Me.lbl1.Size = New System.Drawing.Size(46, 49)
+        Me.lbl1.TabIndex = 17
+        Me.lbl1.Text = "...."
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Font = New System.Drawing.Font("Ekkamai Standard", 26.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(222, Byte))
+        Me.Label1.ForeColor = System.Drawing.Color.Blue
+        Me.Label1.Location = New System.Drawing.Point(290, 30)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(207, 53)
+        Me.Label1.TabIndex = 16
+        Me.Label1.Text = "ยินดีต้อนรับ "
+        '
         'frmUserMenu
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(11.0!, 32.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(774, 319)
+        Me.Controls.Add(Me.lbl1)
         Me.Controls.Add(Me.Panel2)
+        Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.Panel1)
         Me.Font = New System.Drawing.Font("Ekkamai Standard", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(222, Byte))
         Me.Margin = New System.Windows.Forms.Padding(6, 7, 6, 7)
         Me.Name = "frmUserMenu"
         Me.Text = "frmUserMenu"
         Me.Panel2.ResumeLayout(False)
-        CType(Me.PictureBox5, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox6, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PictureBox5, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel1.ResumeLayout(False)
         CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
     Friend WithEvents Panel2 As System.Windows.Forms.Panel
@@ -236,4 +262,6 @@ Partial Class frmUserMenu
     Friend WithEvents btnProduct As System.Windows.Forms.Button
     Friend WithEvents PictureBox2 As System.Windows.Forms.PictureBox
     Friend WithEvents btnUser As System.Windows.Forms.Button
+    Friend WithEvents lbl1 As System.Windows.Forms.Label
+    Friend WithEvents Label1 As System.Windows.Forms.Label
 End Class

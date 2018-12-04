@@ -1,6 +1,6 @@
 ﻿Imports System.Data.SqlClient
 Public Class frmUser
-    Public pk, PKK As String
+    Public pk, PKK, K As String
     Dim save_status As String
     Sub clear()
         txtID.Text = ""
@@ -43,11 +43,12 @@ Public Class frmUser
     Sub showData()
         Dim sql As String
         Dim da As SqlDataAdapter
-        If Ed = "0" Then
-            sql = "SELECT U_ID,U_User,U_Name,U_status FROM Userr where U_User = '" & txtUser.Text & "'"
+        If User_Status = "1" Then
+            sql = "SELECT U_ID,U_User,U_Name,U_status FROM Userr  where U_User  = '" & User_Na & "'"
         Else
             sql = "SELECT U_ID,U_User,U_Name,U_status FROM Userr"
         End If
+
         Module1.Connect()
         Dim ds As New DataSet
         da = New SqlDataAdapter(sql, Conn)
@@ -60,6 +61,7 @@ Public Class frmUser
             Else
                 dgvUserr.Rows(r).Cells(3).Value = "พนักงาน"
             End If
+
         Next
         dgvUserr.Columns(0).HeaderText = "รหัสพนักงาน"
         dgvUserr.Columns(0).Width = 100
@@ -183,7 +185,9 @@ Public Class frmUser
             Sex = "ญ"
         Else
             MessageBox.Show("กรุณาเลือกเพศ")
+            Exit Sub
         End If
+
         If rbtStatus0.Checked = True Then
             level = "0"
         End If
@@ -196,7 +200,7 @@ Public Class frmUser
         End If
         If save_status = "Edit" Then
             sql = "UPDATE Userr set U_User= '" & txtUser.Text & "',U_ID= '" & txtID.Text & "', U_Pass = '" & txtPass.Text & "', U_Name = '" & txtNa.Text & "', U_Add = '" & txtAdd.Text & "', U_Tel = '" & txtTel.Text & "', U_Sex = '" & Sex & "' , U_Status = '" & level & "'"
-            sql &= "WHERE U_ID = '" & txtID.Text & "'"
+            sql &= "WHERE U_User = '" & txtUser.Text & "'"
         End If
         sqlCmd = New SqlCommand(sql, Conn)
         sqlCmd.ExecuteNonQuery()
@@ -222,7 +226,7 @@ Public Class frmUser
         Dim sql As String
         Dim sqlCmd As SqlCommand
         If (MessageBox.Show("คุณต้องการลบข้อมูลนี้ใช่หรือไม่", "ยืนยันการลบข้อมูล", MessageBoxButtons.OKCancel, MessageBoxIcon.Information)) = Windows.Forms.DialogResult.OK Then
-            sql = "DELETE FROM Userr WHERE U_ID = '" & txtID.Text & "'   "
+            sql = "DELETE FROM Userr WHERE U_User = '" & txtUser.Text & "'   "
             sqlCmd = New SqlCommand(sql, Conn)
             sqlCmd.ExecuteNonQuery()
             MessageBox.Show("ลบข้อมูลเรียบร้อย", "ผลการลบข้อมูล", MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -285,7 +289,7 @@ Public Class frmUser
         Else
             rbtStatus1.Checked = True
         End If
-        sql = "Select U_ID,U_Pass,U_Add,U_Tel,U_Sex,U_User FROM Userr WHERE U_User = '" & txtUser.Text & "'"
+        sql = "Select U_ID,U_Pass,U_Add,U_Tel,U_Sex FROM Userr WHERE U_User = '" & txtUser.Text & "'"
         sqlCmd = New SqlCommand(sql, Conn)
         sqlDr = sqlCmd.ExecuteReader
         If sqlDr.Read() Then
@@ -298,7 +302,6 @@ Public Class frmUser
             Else
                 cmbSex.SelectedIndex = 1
             End If
-            txtUser.Text = sqlDr.Item(5)
         End If
         sqlDr.Close()
         txtAdd.Enabled = False

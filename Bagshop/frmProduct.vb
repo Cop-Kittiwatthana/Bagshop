@@ -10,11 +10,11 @@ Public Class frmProduct
         txtID.Text = ""
         txtName.Text = ""
         txtPrice.Text = ""
-        txtAmount.Text = ""
+
         txtDetail.Text = ""
         cmbCate.SelectedIndex = -1
         cmbCate.Text = "กรุณาเลือก"
-        txtColor.Text = ""
+
     End Sub
     Private Sub frmProduct_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Dim sql As String
@@ -37,10 +37,10 @@ Public Class frmProduct
         txtID.Enabled = False
         txtName.Enabled = False
         txtPrice.Enabled = False
-        txtAmount.Enabled = False
+
         txtDetail.Enabled = False
         cmbCate.Enabled = False
-        txtColor.Enabled = False
+
         btnAdd.Enabled = True
         btnEdit.Enabled = False
         btnDelete.Enabled = False
@@ -55,7 +55,7 @@ Public Class frmProduct
         Dim da As SqlDataAdapter
         Dim ds As New DataSet
         Module1.Connect()
-        sql = "Select distinct P.P_ID,P.P_Name,Pr.Pr_Color,P.P_Price,P.P_Amount,C.C_Name,P.P_Detail From Product P,Category C , Property Pr WHERE P.C_ID = C.C_ID and P.P_ID = Pr.P_ID "
+        sql = "Select distinct P.P_ID,P.P_Name,P.P_Price,C.C_Name,P.P_Detail From Product P,Category C  WHERE P.C_ID = C.C_ID"
         da = New SqlDataAdapter(sql, Conn)
         da.Fill(ds, "Product")
         dgvProduct.ReadOnly = True
@@ -66,15 +66,11 @@ Public Class frmProduct
         dgvProduct.Columns(0).Width = 80
         dgvProduct.Columns(1).HeaderText = "ชื่อสินค้า"
         dgvProduct.Columns(1).Width = 100
-        dgvProduct.Columns(2).HeaderText = "สี"
-        dgvProduct.Columns(2).Width = 50
-        dgvProduct.Columns(3).HeaderText = "ราคา"
-        dgvProduct.Columns(3).Width = 80
-        dgvProduct.Columns(4).HeaderText = "จำนวน"
-        dgvProduct.Columns(4).Width = 80
-        dgvProduct.Columns(5).HeaderText = "ประเภท"
-        dgvProduct.Columns(5).Width = 100
-        dgvProduct.Columns(6).Visible = True
+        dgvProduct.Columns(2).HeaderText = "ราคา"
+        dgvProduct.Columns(2).Width = 80
+        dgvProduct.Columns(3).HeaderText = "ประเภท"
+        dgvProduct.Columns(3).Width = 100
+        dgvProduct.Columns(4).Visible = True
     End Sub
 
     Private Sub btnAdd_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAdd.Click
@@ -84,7 +80,7 @@ Public Class frmProduct
         Dim sqlCmd As SqlCommand
 
         Module1.Connect()
-        Sql = "SELECT MAX(P_ID)From Property"
+        Sql = "SELECT MAX(P_ID)From Product"
         sqlCmd = New SqlCommand(Sql, Conn)                          'สร้าง sqlCmd โดยให้เก็บคำสั้่งที่อยู่ใน sql 
         sqlDr = sqlCmd.ExecuteReader                                'ประมวลผลคำสั้ง และ นำผลลัพธ์เก็บไว้ใน sqlDr
         If sqlDr.Read() Then                                        'ตรวจสอบว่าอ่านข้อมูลได้ จะเข้าไปทำในเงื่อนไข
@@ -102,13 +98,13 @@ Public Class frmProduct
         sqlDr.Close()       'ใช่เสร็จแล้วต้องปิด   
         clear()
         txtID.Text = key_Gen
-        txtID.Enabled = True
+        txtID.Enabled = False
         txtName.Enabled = True
         txtPrice.Enabled = True
-        txtAmount.Enabled = True
+
         txtDetail.Enabled = True
         cmbCate.Enabled = True
-        txtColor.Enabled = True
+
         btnAdd.Enabled = False
         btnEdit.Enabled = False
         btnDelete.Enabled = False
@@ -122,10 +118,10 @@ Public Class frmProduct
         txtID.Enabled = False
         txtName.Enabled = True
         txtPrice.Enabled = True
-        txtAmount.Enabled = True
+
         txtDetail.Enabled = True
         cmbCate.Enabled = True
-        txtColor.Enabled = True
+
         btnAdd.Enabled = False
         btnEdit.Enabled = False
         btnDelete.Enabled = False
@@ -150,7 +146,7 @@ Public Class frmProduct
         End If
 
 
-        If txtID.TextLength = 0 Or txtName.TextLength = 0 Or txtPrice.TextLength = 0 Or txtAmount.TextLength = 0 Or txtDetail.TextLength = 0 Or cmbCate.SelectedIndex = -1 Or txtColor.TextLength = 0 Then
+        If txtID.TextLength = 0 Or txtName.TextLength = 0 Or txtPrice.TextLength = 0 Or txtDetail.TextLength = 0 Or cmbCate.SelectedIndex = -1 Then
             MessageBox.Show("กรุณาป้อนข้อมูล", "ตรวจสอบ", MessageBoxButtons.OK, MessageBoxIcon.Information)
             txtName.Focus()
             Exit Sub
@@ -169,9 +165,9 @@ Public Class frmProduct
             sqlDr.Close()
             If save_status = "Add" Then
                 If patch = Nothing Then
-                    sql = "INSERT INTO Product(P_ID,P_Name,P_Price,P_Amount,P_Detail,C_ID) VALUES ('" & txtID.Text & "','" & txtName.Text & "','" & txtPrice.Text & "','" & txtAmount.Text & "','" & txtDetail.Text & "','" & cmbCate.SelectedValue & "')"
+                    sql = "INSERT INTO Product(P_ID,P_Name,P_Price,P_Detail,C_ID) VALUES ('" & txtID.Text & "','" & txtName.Text & "','" & txtPrice.Text & "','" & txtDetail.Text & "','" & cmbCate.SelectedValue & "')"
                 End If
-                sql = "INSERT INTO Product(P_ID,P_Name,P_Price,P_Amount,P_Detail,C_ID,P_IMG) VALUES ('" & txtID.Text & "','" & txtName.Text & "','" & txtPrice.Text & "','" & txtAmount.Text & "','" & txtDetail.Text & "','" & cmbCate.SelectedValue & "',@IMG)"
+                sql = "INSERT INTO Product(P_ID,P_Name,P_Price,P_Detail,C_ID,P_IMG) VALUES ('" & txtID.Text & "','" & txtName.Text & "','" & txtPrice.Text & "','" & txtDetail.Text & "','" & cmbCate.SelectedValue & "',@IMG)"
             End If
             sqlCmd = New SqlCommand(sql, Conn)
             sqlCmd.Parameters.Add(New SqlParameter("@IMG", img))
@@ -182,20 +178,20 @@ Public Class frmProduct
             sqlDr = sqlCmd.ExecuteReader
             sqlDr.Read()
             Dim PID As String = sqlDr.Item(0)
-            sqlDr.Close()
-            sql = "INSERT INTO Property(P_ID,Pr_Color,Pr_Amount)Values ('" & PID & "','" & txtColor.Text & "','" & txtAmount.Text & "')"
-            sqlCmd = New SqlCommand(sql, Conn)
-            sqlCmd.ExecuteNonQuery()
-            Conn.Close()
+            'sqlDr.Close()
+            'sql = "INSERT INTO Property(P_ID,Pr_Color,Pr_Amount)Values ('" & PID & "','" & txtColor.Text & "','" & txtAmount.Text & "')"
+            'sqlCmd = New SqlCommand(sql, Conn)
+            'sqlCmd.ExecuteNonQuery()
+            'Conn.Close()
             MessageBox.Show("บันทึกข้อมูลเรียบร้อยแล้ว", "ยืนยันการบันทึก", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1)
             clear()
             txtID.Enabled = False
             txtName.Enabled = False
             txtPrice.Enabled = False
-            txtAmount.Enabled = False
+
             txtDetail.Enabled = False
             cmbCate.Enabled = False
-            txtColor.Enabled = False
+
             btnAdd.Enabled = True
             btnEdit.Enabled = False
             btnDelete.Enabled = False
@@ -206,27 +202,29 @@ Public Class frmProduct
         End If
 
         If save_status = "Edit" Then
-            If txtColor.Text <> pk Then
-                sql = "UPDATE Product set P_Name = '" & txtName.Text & "',P_Price = '" & txtPrice.Text & "',P_Amount = '" & txtAmount.Text & "',P_Detail = '" & txtDetail.Text & "',C_ID ='" & cmbCate.SelectedValue & "'"
-                sql &= "WHERE P_ID = '" & txtID.Text & "'"
-                sqlCmd = New SqlCommand(sql, Conn)
-                sqlCmd.ExecuteNonQuery() 'ประมวลผลคำสั่ง SQL
-                'Dim PID As String = sqlDr.Item(0)
-                sql = "UPDATE Property set  Pr_Color = '" & txtColor.Text & "',Pr_Amount = '" & txtAmount.Text & "'"
-                sql &= "WHERE   P_ID = '" & txtID.Text & "'"
-                sqlCmd = New SqlCommand(sql, Conn)
-                sqlCmd.ExecuteNonQuery()
-                Conn.Close()
-            End If
+            ' If txtColor.Text <> pk Then
+            sql = "UPDATE Product set P_Name = '" & txtName.Text & "',P_Price = '" & txtPrice.Text & "',P_Detail = '" & txtDetail.Text & "',C_ID ='" & cmbCate.SelectedValue & "',P_IMG = @IMG "
+            sql &= "WHERE P_ID = '" & txtID.Text & "'"
+            ',P_IMG = '" & ptb1.Image & "'
+            sqlCmd = New SqlCommand(sql, Conn)
+            sqlCmd.Parameters.Add(New SqlParameter("@IMG", img))
+            sqlCmd.ExecuteNonQuery() 'ประมวลผลคำสั่ง SQL
+            'Dim PID As String = sqlDr.Item(0)
+            'sql = "UPDATE Property set  Pr_Color = '" & txtColor.Text & "',Pr_Amount = '" & txtAmount.Text & "'"
+            'sql &= "WHERE   P_ID = '" & txtID.Text & "'"
+            'sqlCmd = New SqlCommand(sql, Conn)
+            'sqlCmd.ExecuteNonQuery()
+            'Conn.Close()
+            'End If
             MessageBox.Show("บันทึกข้อมูลเรียบร้อยแล้ว", "ยืนยันการบันทึก", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1)
             clear()
             txtID.Enabled = False
             txtName.Enabled = False
             txtPrice.Enabled = False
-            txtAmount.Enabled = False
+
             txtDetail.Enabled = False
             cmbCate.Enabled = False
-            txtColor.Enabled = False
+
             btnAdd.Enabled = True
             btnEdit.Enabled = False
             btnDelete.Enabled = False
@@ -253,10 +251,8 @@ Public Class frmProduct
         txtID.Enabled = False
         txtName.Enabled = False
         txtPrice.Enabled = False
-        txtAmount.Enabled = False
         txtDetail.Enabled = False
         cmbCate.Enabled = False
-        txtColor.Enabled = False
         btnAdd.Enabled = True
         btnEdit.Enabled = False
         btnDelete.Enabled = False
@@ -271,10 +267,10 @@ Public Class frmProduct
         txtID.Enabled = False
         txtName.Enabled = False
         txtPrice.Enabled = False
-        txtAmount.Enabled = False
+
         txtDetail.Enabled = False
         cmbCate.Enabled = False
-        txtColor.Enabled = False
+
         btnAdd.Enabled = True
         btnEdit.Enabled = False
         btnDelete.Enabled = False
@@ -315,19 +311,17 @@ Public Class frmProduct
         row = e.RowIndex
         txtID.Text = dgvProduct.Rows(e.RowIndex).Cells(0).Value
         txtName.Text = dgvProduct.Rows(e.RowIndex).Cells(1).Value
-        txtColor.Text = dgvProduct.Rows(e.RowIndex).Cells(2).Value
-        txtPrice.Text = dgvProduct.Rows(e.RowIndex).Cells(3).Value
-        txtAmount.Text = dgvProduct.Rows(e.RowIndex).Cells(4).Value
-        cmbCate.Text = dgvProduct.Rows(e.RowIndex).Cells(5).Value
-        txtDetail.Text = dgvProduct.Rows(e.RowIndex).Cells(6).Value
+        txtPrice.Text = dgvProduct.Rows(e.RowIndex).Cells(2).Value
+        cmbCate.Text = dgvProduct.Rows(e.RowIndex).Cells(3).Value
+        txtDetail.Text = dgvProduct.Rows(e.RowIndex).Cells(4).Value
         pic()
         txtID.Enabled = False
         txtName.Enabled = False
         txtPrice.Enabled = False
-        txtAmount.Enabled = False
+
         txtDetail.Enabled = False
         cmbCate.Enabled = False
-        txtColor.Enabled = False
+
         btnAdd.Enabled = False
         btnEdit.Enabled = True
         btnDelete.Enabled = True
@@ -351,7 +345,7 @@ Public Class frmProduct
         End If
     End Sub
 
-    Private Sub txtColor_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtColor.KeyPress
+    Private Sub txtColor_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs)
         Select Case Asc(e.KeyChar)
             Case 58 To 122 ' โค๊ดภาษาอังกฤษ์ตามจริงจะอยู่ที่ 58ถึง122 
                 e.Handled = False
@@ -377,7 +371,7 @@ Public Class frmProduct
         End Select
     End Sub
 
-    Private Sub txtAmount_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtAmount.KeyPress
+    Private Sub txtAmount_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs)
         Select Case Asc(e.KeyChar)
             Case 48 To 57
                 e.Handled = False
