@@ -125,7 +125,7 @@ Partial Class frmReportDay
         Me.ClientSize = New System.Drawing.Size(822, 708)
         Me.Controls.Add(Me.SplitContainer1)
         Me.Name = "frmReportDay"
-        Me.Text = "frmReportDay"
+        Me.Text = "รายงานข้อมูลการขาย"
         Me.SplitContainer1.Panel1.ResumeLayout(False)
         Me.SplitContainer1.Panel1.PerformLayout()
         Me.SplitContainer1.Panel2.ResumeLayout(False)

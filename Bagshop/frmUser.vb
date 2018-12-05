@@ -22,7 +22,7 @@ Public Class frmUser
         txtTel.Enabled = False
         txtAdd.Enabled = False
         txtUser.Enabled = False
-        If Ed = "1" Then
+        If User_Status = "1" Then
             btnAdd.Enabled = False
         Else
             btnAdd.Enabled = True
@@ -254,7 +254,7 @@ Public Class frmUser
         txtTel.Enabled = False
         txtAdd.Enabled = False
         txtUser.Enabled = False
-        If Ed = "1" Then
+        If User_Status = "1" Then
             btnAdd.Enabled = False
         Else
             btnAdd.Enabled = True

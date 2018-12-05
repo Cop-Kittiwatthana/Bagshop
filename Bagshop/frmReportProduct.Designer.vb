@@ -45,7 +45,7 @@ Partial Class frmReportProduct
         Me.Font = New System.Drawing.Font("Ekkamai Standard", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(222, Byte))
         Me.Margin = New System.Windows.Forms.Padding(6, 7, 6, 7)
         Me.Name = "frmReportProduct"
-        Me.Text = "frmReportProduct"
+        Me.Text = "รายงานข้อมูสินค้าทั่งหมด"
         Me.ResumeLayout(False)
 
     End Sub

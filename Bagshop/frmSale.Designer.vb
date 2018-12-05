@@ -60,6 +60,7 @@ Partial Class frmSale
         Me.Label10 = New System.Windows.Forms.Label()
         Me.Label11 = New System.Windows.Forms.Label()
         Me.lblSum = New System.Windows.Forms.Label()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         CType(Me.dgvProduct, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dgvSale, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -252,6 +253,7 @@ Partial Class frmSale
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.Button1)
         Me.GroupBox1.Controls.Add(Me.btRemove)
         Me.GroupBox1.Controls.Add(Me.btAdd)
         Me.GroupBox1.Controls.Add(Me.txtAmount)
@@ -417,11 +419,21 @@ Partial Class frmSale
         Me.lblSum.TabIndex = 38
         Me.lblSum.Text = "0.00"
         '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(294, 506)
+        Me.Button1.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(120, 46)
+        Me.Button1.TabIndex = 21
+        Me.Button1.Text = "เพิ่มรายการ"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
         'frmSale
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(10.0!, 29.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1061, 970)
+        Me.ClientSize = New System.Drawing.Size(1061, 908)
         Me.Controls.Add(Me.lblSum)
         Me.Controls.Add(Me.Label11)
         Me.Controls.Add(Me.Label10)
@@ -484,4 +496,5 @@ Partial Class frmSale
     Friend WithEvents Gprice As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Gamount As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Gnum As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Button1 As System.Windows.Forms.Button
 End Class

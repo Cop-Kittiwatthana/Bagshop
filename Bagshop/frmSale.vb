@@ -21,7 +21,7 @@ Public Class frmSale
             cmbUser.ValueMember = "U_User"
             cmbUser.DisplayMember = "U_Name"
         End If
-        sql = "SELECT p.P_ID,p.P_Name,p.P_Price,pr.Pr_Amount FROM Product p , Property pr where p.P_ID = pr.P_ID"
+        sql = "SELECT p.P_ID,p.P_Name,p.P_Price,pr.Pr_Amount FROM Product p , Property pr where p.P_ID = pr.P_ID order by P_ID"
         da = New SqlDataAdapter(sql, Conn)
         da.Fill(ds, "Product")
         dgvProduct.ReadOnly = True
@@ -70,6 +70,7 @@ Public Class frmSale
         Dim Gid, Gname As String
         Dim Gnum, Gamount As Integer
         Dim Gprice, Gtotal As Double
+        '**********************************************************************
         If txtsale.Text = "" Then
             MessageBox.Show("กรุณาใส่จำนวนที่สั่งซื้อ", "คำเตือน", MessageBoxButtons.OK, MessageBoxIcon.Information)
             Exit Sub
@@ -94,10 +95,40 @@ Public Class frmSale
         Gnum = CInt(txtsale.Text)
         h = Gamount - Gnum
         Gtotal = Gnum * Gprice
-        dgvSale.Rows.Add(Gid, Gname, Gprice, Gnum, Gtotal)
         sum = sum + Gtotal
+        If dgvSale.RowCount - 2 >= 0 Then
+            Dim a As Integer = 0
+            While dgvSale.Rows(a).Cells(0).Value <> dgvProduct.Rows(row).Cells(0).Value And a <= dgvSale.RowCount - 2
+                a += 1
+            End While
+            If dgvSale.Rows(a).Cells(0).Value = dgvProduct.Rows(row).Cells(0).Value Then
+                MessageBox.Show("Found Diff : " & dgvSale.Rows(a).Cells(0).Value)
+                dgvSale.Rows(a).Cells(3).Value = CInt(dgvSale.Rows(a).Cells(3).Value) + CInt(txtsale.Text)
+                dgvSale.Rows(a).Cells(4).Value = CInt(dgvSale.Rows(a).Cells(4).Value) + CInt(txtsale.Text) * CInt(txtPrice.Text)
+                dgvProduct.Rows(row).Cells(3).Value = CInt(txtAmount.Text) - CInt(txtsale.Text)
+                sum = 0
+                For i As Integer = 0 To dgvSale.RowCount - 2
+                    sum += CInt(dgvSale.Rows(i).Cells(4).Value)
+                Next
+                lblSum.Text = sum.ToString("#,##.00")
+                clear()
+                dgvProduct.Rows(row).Cells(3).Value = Gamount - Gnum
+                btnSave.Enabled = True
+                btnSave.BackColor = Color.FromArgb(52, 172, 224)
+                Exit Sub
+            End If
+        End If
+
+        dgvSale.Rows.Add(Gid, Gname, Gprice, Gnum, Gtotal)
+        sum = 0
+        For i As Integer = 0 To dgvSale.RowCount - 2
+            sum += CInt(dgvSale.Rows(i).Cells(4).Value)
+        Next
         lblSum.Text = sum.ToString("#,##.00")
-        dgvProduct.Rows(j).Cells(3).Value = h
+        clear()
+        dgvProduct.Rows(row).Cells(3).Value = Gamount - Gnum
+
+        '************************************************************************************************
         clear()
         txtPID.Text = ""
         txtPNa.Text = ""
@@ -299,7 +330,7 @@ Public Class frmSale
         Dim sql As String
         Dim sqlDr As SqlDataReader
         Dim sqlCmd As SqlCommand
-        j = e.RowIndex
+        row = e.RowIndex
         txtPID.Text = dgvProduct.Rows(e.RowIndex).Cells(0).Value
         txtPNa.Text = dgvProduct.Rows(e.RowIndex).Cells(1).Value
         txtPrice.Text = dgvProduct.Rows(e.RowIndex).Cells(2).Value
@@ -347,5 +378,8 @@ Public Class frmSale
 
     Private Sub cmbUser_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmbUser.SelectedIndexChanged
 
+    End Sub
+
+    Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
     End Sub
 End Class

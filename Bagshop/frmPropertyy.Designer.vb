@@ -39,8 +39,10 @@ Partial Class frmPropertyy
         Me.txtNum = New System.Windows.Forms.TextBox()
         Me.dgvProperty = New System.Windows.Forms.DataGridView()
         Me.txtPID = New System.Windows.Forms.TextBox()
+        Me.ptb1 = New System.Windows.Forms.PictureBox()
         CType(Me.dgvProduct, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dgvProperty, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.ptb1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'txtColor
@@ -103,14 +105,14 @@ Partial Class frmPropertyy
         'dgvProduct
         '
         Me.dgvProduct.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvProduct.Location = New System.Drawing.Point(553, 12)
+        Me.dgvProduct.Location = New System.Drawing.Point(747, 12)
         Me.dgvProduct.Name = "dgvProduct"
-        Me.dgvProduct.Size = New System.Drawing.Size(347, 314)
+        Me.dgvProduct.Size = New System.Drawing.Size(347, 518)
         Me.dgvProduct.TabIndex = 50
         '
         'btnExit
         '
-        Me.btnExit.Location = New System.Drawing.Point(457, 282)
+        Me.btnExit.Location = New System.Drawing.Point(565, 282)
         Me.btnExit.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.btnExit.Name = "btnExit"
         Me.btnExit.Size = New System.Drawing.Size(73, 44)
@@ -120,7 +122,7 @@ Partial Class frmPropertyy
         '
         'btncancel
         '
-        Me.btncancel.Location = New System.Drawing.Point(361, 282)
+        Me.btncancel.Location = New System.Drawing.Point(446, 282)
         Me.btncancel.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.btncancel.Name = "btncancel"
         Me.btncancel.Size = New System.Drawing.Size(86, 44)
@@ -130,7 +132,7 @@ Partial Class frmPropertyy
         '
         'btnSave
         '
-        Me.btnSave.Location = New System.Drawing.Point(180, 282)
+        Me.btnSave.Location = New System.Drawing.Point(226, 282)
         Me.btnSave.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.btnSave.Name = "btnSave"
         Me.btnSave.Size = New System.Drawing.Size(84, 44)
@@ -140,7 +142,7 @@ Partial Class frmPropertyy
         '
         'btnEdit
         '
-        Me.btnEdit.Location = New System.Drawing.Point(101, 282)
+        Me.btnEdit.Location = New System.Drawing.Point(122, 282)
         Me.btnEdit.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.btnEdit.Name = "btnEdit"
         Me.btnEdit.Size = New System.Drawing.Size(73, 44)
@@ -150,7 +152,7 @@ Partial Class frmPropertyy
         '
         'btnDelete
         '
-        Me.btnDelete.Location = New System.Drawing.Point(270, 282)
+        Me.btnDelete.Location = New System.Drawing.Point(336, 282)
         Me.btnDelete.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.btnDelete.Name = "btnDelete"
         Me.btnDelete.Size = New System.Drawing.Size(73, 44)
@@ -180,7 +182,7 @@ Partial Class frmPropertyy
         Me.dgvProperty.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvProperty.Location = New System.Drawing.Point(19, 354)
         Me.dgvProperty.Name = "dgvProperty"
-        Me.dgvProperty.Size = New System.Drawing.Size(881, 176)
+        Me.dgvProperty.Size = New System.Drawing.Size(721, 176)
         Me.dgvProperty.TabIndex = 58
         '
         'txtPID
@@ -190,11 +192,24 @@ Partial Class frmPropertyy
         Me.txtPID.Size = New System.Drawing.Size(205, 30)
         Me.txtPID.TabIndex = 59
         '
+        'ptb1
+        '
+        Me.ptb1.BackColor = System.Drawing.SystemColors.ButtonFace
+        Me.ptb1.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.ptb1.Location = New System.Drawing.Point(525, 12)
+        Me.ptb1.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.ptb1.Name = "ptb1"
+        Me.ptb1.Size = New System.Drawing.Size(215, 253)
+        Me.ptb1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.ptb1.TabIndex = 60
+        Me.ptb1.TabStop = False
+        '
         'frmPropertyy
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(11.0!, 32.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(922, 556)
+        Me.ClientSize = New System.Drawing.Size(1121, 556)
+        Me.Controls.Add(Me.ptb1)
         Me.Controls.Add(Me.txtPID)
         Me.Controls.Add(Me.dgvProperty)
         Me.Controls.Add(Me.txtNum)
@@ -218,6 +233,7 @@ Partial Class frmPropertyy
         Me.Text = "จัดการข้อมูลสีและจำนวน"
         CType(Me.dgvProduct, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dgvProperty, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.ptb1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -239,4 +255,5 @@ Partial Class frmPropertyy
     Friend WithEvents txtNum As System.Windows.Forms.TextBox
     Friend WithEvents dgvProperty As System.Windows.Forms.DataGridView
     Friend WithEvents txtPID As System.Windows.Forms.TextBox
+    Friend WithEvents ptb1 As System.Windows.Forms.PictureBox
 End Class

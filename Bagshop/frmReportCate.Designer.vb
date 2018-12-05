@@ -74,7 +74,7 @@ Partial Class frmReportCate
         Me.Label1.AutoSize = True
         Me.Label1.Location = New System.Drawing.Point(186, 57)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(71, 29)
+        Me.Label1.Size = New System.Drawing.Size(72, 29)
         Me.Label1.TabIndex = 1
         Me.Label1.Text = "ประเภท"
         '

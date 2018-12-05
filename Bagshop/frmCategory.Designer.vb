@@ -162,6 +162,7 @@ Partial Class frmCategory
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(11.0!, 32.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(531, 686)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.dgvCate)

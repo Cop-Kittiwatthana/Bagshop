@@ -1,8 +1,11 @@
 ﻿Imports System.Data
 Imports System.Data.SqlClient
+Imports System.IO
 Public Class frmPropertyy
     Dim save_status, B As String
     Public A As String
+    Dim row As Integer
+    Dim picdata() As Byte
     Private Sub frmPropertyy_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Dim sql As String
         Dim da As SqlDataAdapter
@@ -17,6 +20,7 @@ Public Class frmPropertyy
         da = New SqlDataAdapter(sql, Conn)
         da.Fill(ds, "Product")
         'MessageBox.Show(sql)
+        'ptb1.Image = Nothing
         txtPID.Enabled = False
         txtPNa.Enabled = False
         txtNum.Enabled = False
@@ -32,6 +36,26 @@ Public Class frmPropertyy
         'dgvProperty.Enabled = False
         showData()
         showData2()
+    End Sub
+
+    Sub pic()
+        Dim sql As String
+        Dim da As SqlDataAdapter
+        sql = "SELECT P_IMG from Product where P_ID = '" & dgvProduct.Rows(row).Cells(0).Value & "'"
+        Module1.Connect()
+        Dim tb As New DataTable
+        da = New SqlDataAdapter(sql, Conn)
+        da.Fill(tb)
+        Dim img() As Byte
+        If tb.Rows(0)(0) Is DBNull.Value Then
+            ptb1.Image = Nothing
+            Exit Sub
+        End If
+        img = tb.Rows(0)(0)
+        picdata = img
+        Dim ms As New MemoryStream(img)
+        ptb1.Image = Image.FromStream(ms)
+        ms.Close()
     End Sub
 
     Sub showData()
@@ -55,7 +79,7 @@ Public Class frmPropertyy
         Dim da As SqlDataAdapter
         Dim ds As New DataSet
 
-        sql = "SELECT p.P_ID ,p.P_Name , pr.Pr_Color , pr.Pr_Amount  FROM Product p,Property pr where p.P_ID = pr.P_ID "
+        sql = "SELECT p.P_ID ,p.P_Name , pr.Pr_Color , pr.Pr_Amount  FROM Product p,Property pr where p.P_ID = pr.P_ID order by P_ID "
         da = New SqlDataAdapter(sql, Conn)
         da.Fill(ds, "Product")
         dgvProperty.ReadOnly = True
@@ -82,8 +106,10 @@ Public Class frmPropertyy
     End Sub
 
     Private Sub dgvProduct_CellContentDoubleClick(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dgvProduct.CellContentDoubleClick
+        row = e.RowIndex
         txtPID.Text = dgvProduct.Rows(e.RowIndex).Cells(0).Value
         txtPNa.Text = dgvProduct.Rows(e.RowIndex).Cells(1).Value
+        pic()
         btnAdd.Enabled = True
         btnEdit.Enabled = False
         btnDelete.Enabled = False
@@ -103,7 +129,7 @@ Public Class frmPropertyy
         txtNum.Enabled = False
         txtColor.Enabled = True
         txtAmount.Enabled = True
-        btnAdd.Enabled = True
+        btnAdd.Enabled = False
         btnEdit.Enabled = False
         btnDelete.Enabled = False
         btnSave.Enabled = True
@@ -160,12 +186,12 @@ Public Class frmPropertyy
         sqlcmd.ExecuteNonQuery()
         Conn.Close()
         MessageBox.Show("บันทึกข้อมูลเรียบร้อย", "ยืนยันการบันทึก", MessageBoxButtons.OK, MessageBoxIcon.Information)
-
+        ptb1.Image = Nothing
         txtPID.Enabled = False
         txtPNa.Enabled = False
         txtNum.Enabled = False
-        txtColor.Enabled = True
-        txtAmount.Enabled = True
+        txtColor.Enabled = False
+        txtAmount.Enabled = False
         btnAdd.Enabled = True
         btnEdit.Enabled = False
         btnDelete.Enabled = False
@@ -178,9 +204,11 @@ Public Class frmPropertyy
 
     Private Sub dgvProperty_CellContentDoubleClick(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dgvProperty.CellContentDoubleClick
         txtColor.Text = dgvProperty.Rows(e.RowIndex).Cells(2).Value.ToString
+        txtPNa.Text = dgvProperty.Rows(e.RowIndex).Cells(1).Value.ToString
         txtAmount.Text = dgvProperty.Rows(e.RowIndex).Cells(3).Value.ToString
         txtPID.Text = dgvProperty.Rows(e.RowIndex).Cells(0).Value.ToString
         A = dgvProperty.Rows(e.RowIndex).Cells(2).Value.ToString
+        pic()
         txtColor.Enabled = False
         txtAmount.Enabled = False
         btnAdd.Enabled = False
@@ -217,7 +245,7 @@ Public Class frmPropertyy
         End If
         txtPID.Text = ""
         txtPNa.Text = ""
-
+        ptb1.Image = Nothing
         txtColor.Text = ""
         txtAmount.Text = ""
         txtPID.Enabled = False
@@ -239,6 +267,7 @@ Public Class frmPropertyy
         txtPNa.Text = ""
         txtColor.Text = ""
         txtAmount.Text = ""
+        ptb1.Image = Nothing
         txtPID.Enabled = False
         txtPNa.Enabled = False
         txtNum.Enabled = False

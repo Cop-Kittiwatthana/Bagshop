@@ -81,6 +81,18 @@
     <Import Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ctrProduct.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ctrProduct.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ctrSale.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ctrSale.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ctrSaleYear.vb">
       <DependentUpon>ctrSaleYear.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -103,18 +115,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ctrMember.rpt</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="ctrProduct.vb">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ctrProduct.rpt</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="ctrSale.vb">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ctrSale.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="ctrSaleDay.vb">
@@ -270,6 +270,14 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="ctrProduct.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ctrProduct.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ctrSale.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ctrSale.vb</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="ctrSaleYear.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>ctrSaleYear.vb</LastGenOutput>
@@ -285,14 +293,6 @@
     <EmbeddedResource Include="ctrMember.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>ctrMember.vb</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ctrProduct.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>ctrProduct.vb</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ctrSale.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>ctrSale.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="ctrSaleDay.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

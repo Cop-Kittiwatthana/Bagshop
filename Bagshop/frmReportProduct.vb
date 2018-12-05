@@ -13,7 +13,7 @@ Public Class frmReportProduct
         Dim tbCra As DataTable
         Dim currentReport As New ctrProduct
         Module1.Connect()
-        sql = "select p.P_ID,p.P_Name,pr.Pr_Color,p.P_Detail,p.P_Amount,p.P_Price From Product p, Property pr Where p.P_ID = pr.P_ID"
+        sql = "select p.P_ID,p.P_Name,pr.Pr_Color,p.P_Detail,(pr.Pr_Amount) as P_Amount ,p.P_Price From Product p, Property pr Where p.P_ID = pr.P_ID"
         sqlCmd = New SqlCommand(sql, Conn)
         sqlDr = sqlCmd.ExecuteReader
         tbCra = New DataTable

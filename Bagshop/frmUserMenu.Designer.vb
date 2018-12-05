@@ -24,6 +24,7 @@ Partial Class frmUserMenu
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmUserMenu))
         Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.btnExit = New System.Windows.Forms.Button()
         Me.btnProperty = New System.Windows.Forms.Button()
         Me.PictureBox6 = New System.Windows.Forms.PictureBox()
@@ -40,6 +41,7 @@ Partial Class frmUserMenu
         Me.lbl1 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Panel2.SuspendLayout()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox6, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox5, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
@@ -50,14 +52,26 @@ Partial Class frmUserMenu
         '
         'Panel2
         '
+        Me.Panel2.Controls.Add(Me.PictureBox1)
         Me.Panel2.Controls.Add(Me.btnExit)
         Me.Panel2.Controls.Add(Me.btnProperty)
         Me.Panel2.Controls.Add(Me.PictureBox6)
         Me.Panel2.Controls.Add(Me.BtnReport)
-        Me.Panel2.Location = New System.Drawing.Point(532, 3)
+        Me.Panel2.Location = New System.Drawing.Point(637, 2)
         Me.Panel2.Name = "Panel2"
         Me.Panel2.Size = New System.Drawing.Size(240, 315)
         Me.Panel2.TabIndex = 15
+        '
+        'PictureBox1
+        '
+        Me.PictureBox1.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
+        Me.PictureBox1.Image = CType(resources.GetObject("PictureBox1.Image"), System.Drawing.Image)
+        Me.PictureBox1.Location = New System.Drawing.Point(15, 167)
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.Size = New System.Drawing.Size(61, 61)
+        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox1.TabIndex = 15
+        Me.PictureBox1.TabStop = False
         '
         'btnExit
         '
@@ -77,6 +91,7 @@ Partial Class frmUserMenu
         Me.btnProperty.Size = New System.Drawing.Size(238, 81)
         Me.btnProperty.TabIndex = 13
         Me.btnProperty.Text = "ข้อมูลสีและจำนวน"
+        Me.btnProperty.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.btnProperty.UseVisualStyleBackColor = False
         '
         'PictureBox6
@@ -117,7 +132,7 @@ Partial Class frmUserMenu
         Me.btnSale.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
         Me.btnSale.Location = New System.Drawing.Point(5, 240)
         Me.btnSale.Name = "btnSale"
-        Me.btnSale.Size = New System.Drawing.Size(238, 81)
+        Me.btnSale.Size = New System.Drawing.Size(238, 76)
         Me.btnSale.TabIndex = 9
         Me.btnSale.Text = "ข้อมูลการขาย"
         Me.btnSale.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -135,7 +150,7 @@ Partial Class frmUserMenu
         Me.Panel1.Controls.Add(Me.btnUser)
         Me.Panel1.Location = New System.Drawing.Point(1, 2)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(243, 316)
+        Me.Panel1.Size = New System.Drawing.Size(244, 315)
         Me.Panel1.TabIndex = 14
         '
         'PictureBox4
@@ -207,7 +222,7 @@ Partial Class frmUserMenu
         '
         Me.lbl1.AutoSize = True
         Me.lbl1.Font = New System.Drawing.Font("Ekkamai Standard", 24.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(222, Byte))
-        Me.lbl1.Location = New System.Drawing.Point(338, 107)
+        Me.lbl1.Location = New System.Drawing.Point(426, 94)
         Me.lbl1.Name = "lbl1"
         Me.lbl1.Size = New System.Drawing.Size(46, 49)
         Me.lbl1.TabIndex = 17
@@ -218,7 +233,7 @@ Partial Class frmUserMenu
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Ekkamai Standard", 26.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(222, Byte))
         Me.Label1.ForeColor = System.Drawing.Color.Blue
-        Me.Label1.Location = New System.Drawing.Point(290, 30)
+        Me.Label1.Location = New System.Drawing.Point(353, 19)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(207, 53)
         Me.Label1.TabIndex = 16
@@ -228,7 +243,7 @@ Partial Class frmUserMenu
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(11.0!, 32.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(774, 319)
+        Me.ClientSize = New System.Drawing.Size(880, 317)
         Me.Controls.Add(Me.lbl1)
         Me.Controls.Add(Me.Panel2)
         Me.Controls.Add(Me.Label1)
@@ -236,8 +251,9 @@ Partial Class frmUserMenu
         Me.Font = New System.Drawing.Font("Ekkamai Standard", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(222, Byte))
         Me.Margin = New System.Windows.Forms.Padding(6, 7, 6, 7)
         Me.Name = "frmUserMenu"
-        Me.Text = "frmUserMenu"
+        Me.Text = "พนักงาน"
         Me.Panel2.ResumeLayout(False)
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox6, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox5, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel1.ResumeLayout(False)
@@ -264,4 +280,5 @@ Partial Class frmUserMenu
     Friend WithEvents btnUser As System.Windows.Forms.Button
     Friend WithEvents lbl1 As System.Windows.Forms.Label
     Friend WithEvents Label1 As System.Windows.Forms.Label
+    Friend WithEvents PictureBox1 As System.Windows.Forms.PictureBox
 End Class

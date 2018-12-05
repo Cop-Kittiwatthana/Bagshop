@@ -55,7 +55,7 @@ Public Class frmProduct
         Dim da As SqlDataAdapter
         Dim ds As New DataSet
         Module1.Connect()
-        sql = "Select distinct P.P_ID,P.P_Name,P.P_Price,C.C_Name,P.P_Detail From Product P,Category C  WHERE P.C_ID = C.C_ID"
+        sql = "Select distinct P.P_ID,P.P_Name,P.P_Price,C.C_Name,P_Detail From Product P,Category C  WHERE P.C_ID = C.C_ID"
         da = New SqlDataAdapter(sql, Conn)
         da.Fill(ds, "Product")
         dgvProduct.ReadOnly = True
@@ -63,14 +63,14 @@ Public Class frmProduct
 
 
         dgvProduct.Columns(0).HeaderText = "รหัสสินค้า"
-        dgvProduct.Columns(0).Width = 80
+        dgvProduct.Columns(0).Width = 100
         dgvProduct.Columns(1).HeaderText = "ชื่อสินค้า"
-        dgvProduct.Columns(1).Width = 100
+        dgvProduct.Columns(1).Width = 200
         dgvProduct.Columns(2).HeaderText = "ราคา"
-        dgvProduct.Columns(2).Width = 80
+        dgvProduct.Columns(2).Width = 100
         dgvProduct.Columns(3).HeaderText = "ประเภท"
-        dgvProduct.Columns(3).Width = 100
-        dgvProduct.Columns(4).Visible = True
+        dgvProduct.Columns(3).Width = 200
+        dgvProduct.Columns(4).Visible = False
     End Sub
 
     Private Sub btnAdd_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAdd.Click
@@ -363,7 +363,7 @@ Public Class frmProduct
         Select Case Asc(e.KeyChar)
             Case 48 To 57
                 e.Handled = False
-            Case 8, 13, 45
+            Case 8, 13, 46
                 e.Handled = False
             Case Else
                 e.Handled = True

@@ -46,7 +46,7 @@ Partial Class frmReportUser
         Me.Font = New System.Drawing.Font("Ekkamai Standard", 8.249999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(222, Byte))
         Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Name = "frmReportUser"
-        Me.Text = "frmReportUser"
+        Me.Text = "รายงานข้อมูลผู้ใช้"
         Me.ResumeLayout(False)
 
     End Sub
