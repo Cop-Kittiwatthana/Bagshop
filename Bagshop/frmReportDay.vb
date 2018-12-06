@@ -52,7 +52,7 @@ Public Class frmReportDay
 
     Sub yearctr()
         Module1.Connect()
-        Dim sql As String = "select convert(int,month(O_Date)) as Month,SUM(Net) as Total ,(select SUM(Net)from Orderr where YEAR(O_Date) = '" & cmbSale.SelectedValue & "') as Net from Orderr where YEAR(O_Date) = '" & cmbSale.SelectedValue & "' group by MONTH(O_Date)"
+        Dim sql As String = "select str(month(O_Date)) as O_Date ,SUM(Net) as Total ,(select SUM(Net)from Orderr where YEAR(O_Date) = '" & cmbSale.SelectedValue & "') as Net from Orderr where YEAR(O_Date) = '" & cmbSale.SelectedValue & "' group by MONTH(O_Date)"
         Dim sqCmd As New SqlCommand(sql, Conn)
         Dim sqlDr As SqlDataReader = sqCmd.ExecuteReader
         Dim TbCtr As New DataTable
@@ -67,7 +67,7 @@ Public Class frmReportDay
         TbCtr.Load(sqlDr)
         currentreport.SetDataSource(ds.Tables("emp"))
         ctrv1.ReportSource = currentreport '
-        currentreport.SetParameterValue("Date1", CStr(cmbSale.Text))
+        currentreport.SetParameterValue("Date1", CStr(cmbSale.SelectedValue))
         Me.WindowState = FormWindowState.Maximized
     End Sub
     Sub dateload()
@@ -85,12 +85,12 @@ Public Class frmReportDay
 
     Sub yearload()
         Module1.Connect()
-        Dim sql As String = "select distinct convert(int,year(O_Date)) as Date from Orderr"
+        Dim sql As String = "select distinct Convert(int,year(O_Date)) as Date from Orderr"
         Dim da As New SqlDataAdapter(sql, Conn)
         Dim ds As New DataSet
         da.Fill(ds, "Date")
         cmbSale.DataSource = ds.Tables("Date")
-        cmbSale.DisplayMember = "O_Date"
+        cmbSale.DisplayMember = "Date"
         cmbSale.ValueMember = "Date"
         cmbSale.SelectedIndex = -1
         Conn.Close()
@@ -111,7 +111,7 @@ Public Class frmReportDay
     Private Sub RadioButton1_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles rdbDay.CheckedChanged
         dateload()
         cmbSale.Enabled = True
-        Dim a As String = "  select month(r.Date),r.Net as Total_Price,(select sum(Net) from [Order]) as Net from [Order] r where (cast(month(Date) as varchar) +'/'+ cast(year(Date) as varchar)) = '12/2018'"
+        Dim a As String = "  select month(r.O_Date),r.Net as Total_Price,(select sum(Net) from Orderr) as Net from Orderr r where (cast(month(O_Date) as varchar) +'/'+ cast(year(O_Date) as varchar)) = '12/2018'"
     End Sub
 
     Private Sub RadioButton2_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles rdbMonth.CheckedChanged

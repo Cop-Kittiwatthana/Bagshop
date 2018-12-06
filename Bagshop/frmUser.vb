@@ -207,6 +207,7 @@ Public Class frmUser
         Conn.Close()
         MessageBox.Show("บันทึกข้อมูลเรียบร้อยแล้ว", "ยืนยันการบันทึก", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1)
         clear()
+        txtUser.Enabled = False
         txtAdd.Enabled = False
         txtNa.Enabled = False
         txtPass.Enabled = False
@@ -225,6 +226,10 @@ Public Class frmUser
     Private Sub btnDelete_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnDelete.Click
         Dim sql As String
         Dim sqlCmd As SqlCommand
+        If txtUser.Text = User_Na Then
+            MessageBox.Show("ลบผู้ใช้นี้ไม่ได้")
+            Exit Sub
+        End If
         If (MessageBox.Show("คุณต้องการลบข้อมูลนี้ใช่หรือไม่", "ยืนยันการลบข้อมูล", MessageBoxButtons.OKCancel, MessageBoxIcon.Information)) = Windows.Forms.DialogResult.OK Then
             sql = "DELETE FROM Userr WHERE U_User = '" & txtUser.Text & "'   "
             sqlCmd = New SqlCommand(sql, Conn)
@@ -289,7 +294,7 @@ Public Class frmUser
         Else
             rbtStatus1.Checked = True
         End If
-        sql = "Select U_ID,U_Pass,U_Add,U_Tel,U_Sex FROM Userr WHERE U_User = '" & txtUser.Text & "'"
+        sql = "Select U_ID,U_Pass,U_Add,U_Tel,U_Sex FROM Userr WHERE U_User = '" & txtID.Text & "'"
         sqlCmd = New SqlCommand(sql, Conn)
         sqlDr = sqlCmd.ExecuteReader
         If sqlDr.Read() Then
