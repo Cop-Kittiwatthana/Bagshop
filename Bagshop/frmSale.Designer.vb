@@ -44,8 +44,17 @@ Partial Class frmSale
         Me.btAdd = New System.Windows.Forms.Button()
         Me.btRemove = New System.Windows.Forms.Button()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.Label12 = New System.Windows.Forms.Label()
+        Me.txtColor = New System.Windows.Forms.TextBox()
         Me.dgvProduct = New System.Windows.Forms.DataGridView()
         Me.dgvSale = New System.Windows.Forms.DataGridView()
+        Me.Gid = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Gname = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GColor = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Gprice = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Gamount = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Gnum = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.aaa = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.txtID = New System.Windows.Forms.TextBox()
         Me.btnExit = New System.Windows.Forms.Button()
         Me.btncancel = New System.Windows.Forms.Button()
@@ -55,15 +64,6 @@ Partial Class frmSale
         Me.Label10 = New System.Windows.Forms.Label()
         Me.Label11 = New System.Windows.Forms.Label()
         Me.lblSum = New System.Windows.Forms.Label()
-        Me.txtColor = New System.Windows.Forms.TextBox()
-        Me.Label12 = New System.Windows.Forms.Label()
-        Me.Gid = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Gname = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GColor = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Gprice = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Gamount = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Gnum = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.aaa = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GroupBox1.SuspendLayout()
         CType(Me.dgvProduct, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dgvSale, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -89,6 +89,7 @@ Partial Class frmSale
         '
         'dtsale
         '
+        Me.dtsale.Enabled = False
         Me.dtsale.Location = New System.Drawing.Point(112, 122)
         Me.dtsale.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.dtsale.Name = "dtsale"
@@ -288,6 +289,22 @@ Partial Class frmSale
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "ข้อมูลการขาย"
         '
+        'Label12
+        '
+        Me.Label12.AutoSize = True
+        Me.Label12.Location = New System.Drawing.Point(409, 153)
+        Me.Label12.Name = "Label12"
+        Me.Label12.Size = New System.Drawing.Size(24, 29)
+        Me.Label12.TabIndex = 22
+        Me.Label12.Text = "สี"
+        '
+        'txtColor
+        '
+        Me.txtColor.Location = New System.Drawing.Point(449, 154)
+        Me.txtColor.Name = "txtColor"
+        Me.txtColor.Size = New System.Drawing.Size(119, 28)
+        Me.txtColor.TabIndex = 21
+        '
         'dgvProduct
         '
         Me.dgvProduct.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
@@ -306,6 +323,47 @@ Partial Class frmSale
         Me.dgvSale.Name = "dgvSale"
         Me.dgvSale.Size = New System.Drawing.Size(1003, 221)
         Me.dgvSale.TabIndex = 23
+        '
+        'Gid
+        '
+        Me.Gid.HeaderText = "รหัสสินค้า"
+        Me.Gid.Name = "Gid"
+        Me.Gid.Width = 150
+        '
+        'Gname
+        '
+        Me.Gname.HeaderText = "ชื่อสินค้า"
+        Me.Gname.Name = "Gname"
+        Me.Gname.Width = 200
+        '
+        'GColor
+        '
+        Me.GColor.HeaderText = "สี"
+        Me.GColor.Name = "GColor"
+        '
+        'Gprice
+        '
+        Me.Gprice.HeaderText = "ราคา"
+        Me.Gprice.Name = "Gprice"
+        Me.Gprice.Width = 120
+        '
+        'Gamount
+        '
+        Me.Gamount.HeaderText = "จำนวนที่ขาย"
+        Me.Gamount.Name = "Gamount"
+        Me.Gamount.Width = 150
+        '
+        'Gnum
+        '
+        Me.Gnum.HeaderText = "รวม"
+        Me.Gnum.Name = "Gnum"
+        Me.Gnum.Width = 150
+        '
+        'aaa
+        '
+        Me.aaa.HeaderText = "รหัสสี"
+        Me.aaa.Name = "aaa"
+        Me.aaa.Visible = False
         '
         'txtID
         '
@@ -392,63 +450,6 @@ Partial Class frmSale
         Me.lblSum.Size = New System.Drawing.Size(71, 31)
         Me.lblSum.TabIndex = 38
         Me.lblSum.Text = "0.00"
-        '
-        'txtColor
-        '
-        Me.txtColor.Location = New System.Drawing.Point(449, 154)
-        Me.txtColor.Name = "txtColor"
-        Me.txtColor.Size = New System.Drawing.Size(119, 28)
-        Me.txtColor.TabIndex = 21
-        '
-        'Label12
-        '
-        Me.Label12.AutoSize = True
-        Me.Label12.Location = New System.Drawing.Point(409, 153)
-        Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(24, 29)
-        Me.Label12.TabIndex = 22
-        Me.Label12.Text = "สี"
-        '
-        'Gid
-        '
-        Me.Gid.HeaderText = "รหัสสินค้า"
-        Me.Gid.Name = "Gid"
-        Me.Gid.Width = 150
-        '
-        'Gname
-        '
-        Me.Gname.HeaderText = "ชื่อสินค้า"
-        Me.Gname.Name = "Gname"
-        Me.Gname.Width = 200
-        '
-        'GColor
-        '
-        Me.GColor.HeaderText = "สี"
-        Me.GColor.Name = "GColor"
-        '
-        'Gprice
-        '
-        Me.Gprice.HeaderText = "ราคา"
-        Me.Gprice.Name = "Gprice"
-        Me.Gprice.Width = 120
-        '
-        'Gamount
-        '
-        Me.Gamount.HeaderText = "จำนวนที่ขาย"
-        Me.Gamount.Name = "Gamount"
-        Me.Gamount.Width = 150
-        '
-        'Gnum
-        '
-        Me.Gnum.HeaderText = "รวม"
-        Me.Gnum.Name = "Gnum"
-        Me.Gnum.Width = 150
-        '
-        'aaa
-        '
-        Me.aaa.HeaderText = "รหัสสี"
-        Me.aaa.Name = "aaa"
-        Me.aaa.Visible = False
         '
         'frmSale
         '

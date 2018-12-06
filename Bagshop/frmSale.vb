@@ -166,13 +166,27 @@ Public Class frmSale
 
 
     Private Sub btRemove_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btRemove.Click
-        If dgvSale.Rows.Count <= 1 Then Exit Sub
-        sum = sum - Val(dgvSale.CurrentRow.Cells(4).Value)
-        lblSum.Text = sum.ToString("#,##.00")
-        dgvSale.Rows.Remove(dgvSale.CurrentRow)
-        If dgvSale.Rows.Count <= 1 Then
-            btRemove.Enabled = False
-            btnSave.Enabled = False
+        'If dgvSale.Rows.Count <= 1 Then Exit Sub
+        'sum = sum - Val(dgvSale.CurrentRow.Cells(5).Value)
+        'lblSum.Text = sum.ToString("#,##.00")
+        'dgvSale.Rows.Remove(dgvSale.CurrentRow)
+        ' If dgvSale.Rows.Count <= 1 Then
+        'btRemove.Enabled = False
+        ' btnSave.Enabled = False
+        ' End If
+        Dim a As Integer = 0
+        While dgvProduct.Rows(a).Cells(0).Value <> dgvSale.Rows(row).Cells(0).Value
+            a += 1
+        End While
+        dgvProduct.Rows(a).Cells(3).Value = CInt(dgvProduct.Rows(a).Cells(3).Value) + CInt(dgvSale.Rows(row).Cells(4).Value)
+        If dgvSale.RowCount = 2 Then
+            sum = 0
+            lblSum.Text = "0.00"
+            dgvSale.Rows.Remove(dgvSale.CurrentRow)
+        Else
+            sum -= CInt(dgvSale.Rows(row).Cells(5).Value)
+            dgvSale.Rows.Remove(dgvSale.CurrentRow)
+            lblSum.Text = sum.ToString("#,##.00")
         End If
     End Sub
 
