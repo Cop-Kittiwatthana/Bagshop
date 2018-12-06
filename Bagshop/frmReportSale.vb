@@ -28,7 +28,7 @@ Public Class frmReportSale
         Dim TbCtr As DataTable
         Dim currentreport As New ctrSale
         Module1.Connect()
-        sql = "select r.O_ID,U_Name,m.M_Name,p.P_ID,p.P_Name,p.P_Price,op.Num,op.Total,r.Net from Userr u, Member m, Product p, Order_Product op, Orderr r where r.O_ID = '" & cmbOID.SelectedValue & " ' and r.O_ID = op.O_ID and op.P_ID = p.P_ID and r.M_ID = m.M_ID and  u.U_User = r.U_User order by O_ID"
+        sql = "select r.O_ID,U_Name,m.M_Name,p.P_ID,p.P_Name,p.P_Price,op.Num,op.Total,r.Net,r.Pr_Color from Userr u, Member m, Product p, Order_Product op, Orderr r where r.O_ID = '" & cmbOID.SelectedValue & " ' and r.O_ID = op.O_ID and op.P_ID = p.P_ID and r.M_ID = m.M_ID and  u.U_User = r.U_User order by O_ID"
         sqlCmd = New SqlCommand(sql, Conn)
         sqlDr = sqlCmd.ExecuteReader
         TbCtr = New DataTable

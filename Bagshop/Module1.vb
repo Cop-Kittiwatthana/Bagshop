@@ -2,8 +2,8 @@
 Imports System.Data.SqlClient
 Module Module1
 
-    Public strConn As String = "user id=sa; password=1234; data source=LAPTOP-ND6I7A0Q; initial catalog=BAGSHOPP;"
-    'Public strConn As String = "user id=sa; password=1234; data source=LAPTOP-ND6I7A0Q; initial catalog=ASSS,BAGSHOPP,;"
+    Public strConn As String = "user id=sa; password=1234; data source=LAPTOP-ND6I7A0Q; initial catalog=AZZZZZZ;"
+    'Public strConn As String = "user id=sa; password=1234; data source=LAPTOP-ND6I7A0Q; initial catalog=BAGSHOPP,;"
     Public Conn As New SqlConnection
     Public User_Na As String
     Public U_Name As String

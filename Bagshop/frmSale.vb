@@ -5,14 +5,15 @@ Public Class frmSale
     Dim sum As Double
     Dim row As Integer
     Dim save_status As String
+    Dim x As String
     Private Sub frmSale_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Dim sql As String
         Dim da As SqlDataAdapter
         Dim ds As New DataSet
 
         Module1.Connect()
-        'sql "SELECT E_Usename, E_Name From Employee WHERE E_Usename = '" & User_Na & "'"
-        sql = "SELECT U_USer, U_Name From Userr"
+        'sql = "SELECT U_USer, U_Name From Userr"
+        sql = "SELECT U_ID,U_User,U_Name FROM Userr  where U_User  = '" & User_Na & "'"
 
         da = New SqlDataAdapter(sql, Conn)
         da.Fill(ds, "Userr")
@@ -21,7 +22,7 @@ Public Class frmSale
             cmbUser.ValueMember = "U_User"
             cmbUser.DisplayMember = "U_Name"
         End If
-        sql = "SELECT p.P_ID,p.P_Name,p.P_Price,pr.Pr_Amount FROM Product p , Property pr where p.P_ID = pr.P_ID order by P_ID"
+        sql = "SELECT p.P_ID,p.P_Name,p.P_Price,pr.Pr_Amount,pr.Pr_Color,pr.Pr_Num FROM Product p , Property pr where p.P_ID = pr.P_ID order by P_ID"
         da = New SqlDataAdapter(sql, Conn)
         da.Fill(ds, "Product")
         dgvProduct.ReadOnly = True
@@ -34,11 +35,15 @@ Public Class frmSale
         dgvProduct.Columns(2).Width = 100
         dgvProduct.Columns(3).HeaderText = "จำนวนคงเหลือ"
         dgvProduct.Columns(3).Width = 100
+        dgvProduct.Columns(4).HeaderText = "สี"
+        dgvProduct.Columns(4).Width = 100
+        dgvProduct.Columns(5).Visible = False
         cmbUser.Enabled = False
-        dtSale.Enabled = False
+        dtsale.Enabled = False
         txtMID.Enabled = False
         txtMNa.Enabled = False
         btnSearch.Enabled = False
+        txtColor.Enabled = False
         txtPID.Enabled = False
         txtPNa.Enabled = False
         txtPrice.Enabled = False
@@ -56,10 +61,6 @@ Public Class frmSale
     End Sub
 
     Sub clear()
-        'lblSum.Text = ""
-        'txtMemNa.Text = ""
-        'txtMemID.Text = ""
-        txtAmount.Text = ""
         txtPID.Text = ""
         txtPNa.Text = ""
         txtsale.Text = ""
@@ -67,7 +68,7 @@ Public Class frmSale
     End Sub
 
     Private Sub btAdd_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btAdd.Click
-        Dim Gid, Gname As String
+        Dim Gid, Gname, GColor As String
         Dim Gnum, Gamount As Integer
         Dim Gprice, Gtotal As Double
         '**********************************************************************
@@ -93,40 +94,45 @@ Public Class frmSale
         Gname = txtPNa.Text
         Gprice = CDbl(txtPrice.Text)
         Gnum = CInt(txtsale.Text)
+        GColor = txtColor.Text
         h = Gamount - Gnum
         Gtotal = Gnum * Gprice
+        Dim Color As String = txtColor.Text
         sum = sum + Gtotal
         If dgvSale.RowCount - 2 >= 0 Then
-            Dim a As Integer = 0
-            While dgvSale.Rows(a).Cells(0).Value <> dgvProduct.Rows(row).Cells(0).Value And a <= dgvSale.RowCount - 2
-                a += 1
-            End While
-            If dgvSale.Rows(a).Cells(0).Value = dgvProduct.Rows(row).Cells(0).Value Then
-                MessageBox.Show("Found Diff : " & dgvSale.Rows(a).Cells(0).Value)
-                dgvSale.Rows(a).Cells(3).Value = CInt(dgvSale.Rows(a).Cells(3).Value) + CInt(txtsale.Text)
-                dgvSale.Rows(a).Cells(4).Value = CInt(dgvSale.Rows(a).Cells(4).Value) + CInt(txtsale.Text) * CInt(txtPrice.Text)
+            Dim a, x As Integer
+            For a = 0 To dgvSale.RowCount - 2
+                If dgvSale.Rows(a).Cells(2).Value = dgvProduct.Rows(row).Cells(4).Value And dgvSale.Rows(a).Cells(0).Value = dgvProduct.Rows(row).Cells(0).Value Then
+                    x = a
+                End If
+            Next
+            If dgvSale.Rows(x).Cells(2).Value = dgvProduct.Rows(row).Cells(4).Value And dgvSale.Rows(x).Cells(0).Value = dgvProduct.Rows(row).Cells(0).Value Then
+                MessageBox.Show("Found Diff : " & dgvSale.Rows(x).Cells(0).Value)
+                dgvSale.Rows(x).Cells(4).Value = CInt(dgvSale.Rows(x).Cells(4).Value) + CInt(txtsale.Text)
+                dgvSale.Rows(x).Cells(5).Value = CInt(dgvSale.Rows(x).Cells(5).Value) + CInt(txtsale.Text) * CInt(txtPrice.Text)
                 dgvProduct.Rows(row).Cells(3).Value = CInt(txtAmount.Text) - CInt(txtsale.Text)
+                dgvSale.Rows(x).Cells(2).Value = dgvProduct.Rows(row).Cells(4).Value
                 sum = 0
                 For i As Integer = 0 To dgvSale.RowCount - 2
-                    sum += CInt(dgvSale.Rows(i).Cells(4).Value)
+                    sum += CInt(dgvSale.Rows(i).Cells(5).Value)
                 Next
                 lblSum.Text = sum.ToString("#,##.00")
                 clear()
                 dgvProduct.Rows(row).Cells(3).Value = Gamount - Gnum
                 btnSave.Enabled = True
-                btnSave.BackColor = Color.FromArgb(52, 172, 224)
                 Exit Sub
             End If
         End If
 
-        dgvSale.Rows.Add(Gid, Gname, Gprice, Gnum, Gtotal)
+        dgvSale.Rows.Add(Gid, Gname, Color, Gprice, Gnum, Gtotal)
         sum = 0
         For i As Integer = 0 To dgvSale.RowCount - 2
-            sum += CInt(dgvSale.Rows(i).Cells(4).Value)
+            sum += CInt(dgvSale.Rows(i).Cells(5).Value)
         Next
         lblSum.Text = sum.ToString("#,##.00")
         clear()
         dgvProduct.Rows(row).Cells(3).Value = Gamount - Gnum
+        btnSave.Enabled = True
 
         '************************************************************************************************
         clear()
@@ -156,6 +162,8 @@ Public Class frmSale
         btAdd.Enabled = True
         btRemove.Enabled = False
     End Sub
+
+
 
     Private Sub btRemove_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btRemove.Click
         If dgvSale.Rows.Count <= 1 Then Exit Sub
@@ -193,6 +201,7 @@ Public Class frmSale
         sqlDr.Close()       'ใช่เสร็จแล้วต้องปิด   
         sum = 0
         txtID.Text = key_Gen
+        txtColor.Enabled = False
         cmbUser.Enabled = True
         dtsale.Enabled = True
         txtMID.Enabled = False
@@ -219,7 +228,7 @@ Public Class frmSale
         Dim sql As String
         Dim sqlCmd As SqlCommand
         Dim sqlDr As SqlDataReader
-        Dim M_ID, saleID, Num, Price, ID, orderDate, Total As String
+        Dim M_ID, saleID, Num, Price, ID, orderDate, Total, Color As String
         Dim i, k, orderID As Integer
         k = dgvSale.RowCount - 2
         If k < 0 Then
@@ -227,8 +236,8 @@ Public Class frmSale
             Exit Sub
         End If
         orderDate = Today.Date.ToString("s")
-        sql = "insert into Orderr (O_ID,O_Date,Net,M_ID,U_User)"
-        sql &= "values('" & CStr(txtID.Text) & "','" & orderDate & "','" & CDbl(lblSum.Text) & "','" & CStr(txtMID.Text) & "','" & cmbUser.SelectedValue & "')"
+        sql = "insert into Orderr (O_ID,O_Date,Net,M_ID,U_User,Pr_Color)"
+        sql &= "values('" & CStr(txtID.Text) & "','" & orderDate & "','" & CDbl(lblSum.Text) & "','" & CStr(txtMID.Text) & "','" & cmbUser.SelectedValue & "','" & txtColor.Text & "')"
         sqlCmd = New SqlCommand(sql, Conn)
         sqlCmd.ExecuteNonQuery()
         sql = "select Max(O_ID)from Orderr"
@@ -240,17 +249,18 @@ Public Class frmSale
         sqlDr.Close()
         For i = 0 To k
             ID = dgvSale.Rows(i).Cells(0).Value
-            Num = dgvSale.Rows(i).Cells(3).Value
-            Price = dgvSale.Rows(i).Cells(2).Value
-            Total = dgvSale.Rows(i).Cells(4).Value
-            sql = "insert into Order_Product (O_ID,P_ID,Num,Price,Total)"
-            sql &= "values ('" & saleID & "','" & ID & "','" & Num & "','" & Price & "','" & Total & "')"
+            Num = dgvSale.Rows(i).Cells(4).Value
+            Price = dgvSale.Rows(i).Cells(3).Value
+            Total = dgvSale.Rows(i).Cells(5).Value
+            Color = dgvSale.Rows(i).Cells(2).Value
+            sql = "insert into Order_Product (O_ID,P_ID,Num,Price,Total,Pr_Color)"
+            sql &= "values ('" & saleID & "','" & ID & "','" & Num & "','" & Price & "','" & Total & "','" & Color & "')"
             sqlCmd = New SqlCommand(sql, Conn)
             sqlCmd.ExecuteNonQuery()
         Next
         k = dgvProduct.RowCount - 2
         For i = 0 To k
-            sql = "update Product set P_Amount = '" & dgvProduct.Rows(i).Cells(3).Value & "' where P_ID = '" & dgvProduct.Rows(i).Cells(0).Value & "'"
+            sql = "update Property set Pr_Amount = '" & dgvProduct.Rows(i).Cells(3).Value & "' where Pr_Num = '" & dgvProduct.Rows(i).Cells(5).Value & "'"
             sqlCmd = New SqlCommand(sql, Conn)
             sqlCmd.ExecuteNonQuery()
         Next
@@ -316,6 +326,23 @@ Public Class frmSale
             Exit Sub
         End If
         frmSlipSale.Show()
+        clear()
+        txtPID.Enabled = False
+        txtPNa.Enabled = False
+        cmbUser.Enabled = False
+        txtAmount.Enabled = False
+        txtPrice.Enabled = False
+        txtsale.Enabled = False
+        dgvProduct.Enabled = False
+        dgvSale.Enabled = False
+        btnAdd.Enabled = True
+        btnSave.Enabled = False
+        btncancel.Enabled = False
+        btnExit.Enabled = True
+        btnPrint.Enabled = False
+        btAdd.Enabled = False
+        btRemove.Enabled = False
+        dtsale.Enabled = False
     End Sub
 
     Private Sub btnSearch_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSearch.Click
@@ -335,7 +362,9 @@ Public Class frmSale
         txtPNa.Text = dgvProduct.Rows(e.RowIndex).Cells(1).Value
         txtPrice.Text = dgvProduct.Rows(e.RowIndex).Cells(2).Value
         txtAmount.Text = dgvProduct.Rows(e.RowIndex).Cells(3).Value
+        txtColor.Text = dgvProduct.Rows(e.RowIndex).Cells(4).Value
         amount = dgvProduct.Rows(e.RowIndex).Cells(3).Value
+        'x = dgvProduct.Rows(e.RowIndex).Cells(5).Value
         sql = "Select P_Price FROM Product WHERE P_ID = '" & txtPID.Text & "'"
         sqlCmd = New SqlCommand(sql, Conn)
         sqlDr = sqlCmd.ExecuteReader
@@ -350,7 +379,7 @@ Public Class frmSale
         Select Case Asc(e.KeyChar)
             Case 48 To 57
                 e.Handled = False
-            Case 8, 13, 45
+            Case 8, 13,
                 e.Handled = False
             Case Else
                 e.Handled = True
@@ -380,6 +409,6 @@ Public Class frmSale
 
     End Sub
 
-    Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
+    Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
     End Sub
 End Class

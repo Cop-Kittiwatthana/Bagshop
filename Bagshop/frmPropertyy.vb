@@ -30,9 +30,6 @@ Public Class frmPropertyy
         btnEdit.Enabled = False
         btnDelete.Enabled = False
         btnSave.Enabled = True
-        btncancel.Enabled = True
-        btnExit.Enabled = True
-        'dgvProduct.Enabled = False
         'dgvProperty.Enabled = False
         showData()
         showData2()
@@ -71,7 +68,7 @@ Public Class frmPropertyy
         dgvProduct.Columns(0).HeaderText = "รหัสสินค้า"
         dgvProduct.Columns(0).Width = 100
         dgvProduct.Columns(1).HeaderText = "ชื่อสินค้า"
-        dgvProduct.Columns(1).Width = 150
+        dgvProduct.Columns(1).Width = 200
     End Sub
     
     Sub showData2()
@@ -79,7 +76,7 @@ Public Class frmPropertyy
         Dim da As SqlDataAdapter
         Dim ds As New DataSet
 
-        sql = "SELECT p.P_ID ,p.P_Name , pr.Pr_Color , pr.Pr_Amount  FROM Product p,Property pr where p.P_ID = pr.P_ID order by P_ID "
+        sql = "SELECT p.P_ID ,p.P_Name , pr.Pr_Color , pr.Pr_Amount ,Pr_Num  FROM Product p,Property pr where p.P_ID = pr.P_ID order by P_ID "
         da = New SqlDataAdapter(sql, Conn)
         da.Fill(ds, "Product")
         dgvProperty.ReadOnly = True
@@ -93,6 +90,7 @@ Public Class frmPropertyy
             .Columns(2).Width = 100
             .Columns(3).HeaderText = "จำนวน"
             .Columns(3).Width = 100
+            .Columns(4).Visible = False
         End With
     End Sub
     
@@ -149,7 +147,7 @@ Public Class frmPropertyy
         End If
        
         If save_status = "Add" Then
-            sql = " SELECT Pr_Color FROM Property , Product WHERE Property.Pr_Color  ='" & txtColor.Text & "' AND Property.P_ID = '" & txtPID.Text & "'"
+            sql = " SELECT Pr_Color FROM Property , Product WHERE Property.Pr_Color  ='" & txtColor.Text & "' AND Property.P_ID = '" & txtPID.Text & "' "
             sqlcmd = New SqlCommand(sql, Conn)
             sqldr = sqlcmd.ExecuteReader
             If sqldr.Read() Then
@@ -166,7 +164,7 @@ Public Class frmPropertyy
 
         If save_status = "Edit" Then
             If txtColor.Text <> A Then
-                sql = "SELECT Pr_Color FROM Property , Product WHERE Property.Pr_Color  ='" & txtColor.Text & "' AND Property.P_ID = '" & txtPID.Text & "' "
+                sql = "SELECT Pr_Color,Pr_Num FROM Property , Product WHERE Property.Pr_Color  ='" & txtColor.Text & "' AND Property.P_ID = '" & txtPID.Text & "' and Pr_Num = '" & txtNum.Text & "'  "
                 sqlcmd = New SqlCommand(sql, Conn)
                 sqldr = sqlcmd.ExecuteReader
                 If sqldr.Read() Then
@@ -179,7 +177,7 @@ Public Class frmPropertyy
             End If
             If save_status = "Edit" Then
                 sql = "UPDATE Property set Pr_Color ='" & txtColor.Text & "' , Pr_Amount = '" & txtAmount.Text & "'"
-                sql &= "WHERE P_ID ='" & txtPID.Text & "'"
+                sql &= "WHERE P_ID ='" & txtPID.Text & "'and Pr_Num = '" & txtNum.Text & "'"
             End If
         End If
         sqlcmd = New SqlCommand(sql, Conn)
@@ -209,6 +207,7 @@ Public Class frmPropertyy
         txtPID.Text = dgvProperty.Rows(e.RowIndex).Cells(0).Value.ToString
         A = dgvProperty.Rows(e.RowIndex).Cells(2).Value.ToString
         pic()
+        txtNum.Text = dgvProperty.Rows(e.RowIndex).Cells(4).Value.ToString
         txtColor.Enabled = False
         txtAmount.Enabled = False
         btnAdd.Enabled = False
@@ -276,7 +275,7 @@ Public Class frmPropertyy
         btnAdd.Enabled = True
         btnEdit.Enabled = False
         btnDelete.Enabled = False
-        btnSave.Enabled = True
+        btnSave.Enabled = False
         btncancel.Enabled = True
         btnExit.Enabled = True
     End Sub

@@ -75,7 +75,7 @@ Partial Class frmMerber1
         Me.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(222, Byte))
         Me.Margin = New System.Windows.Forms.Padding(6)
         Me.Name = "frmMerber1"
-        Me.Text = "MemberSelct"
+        Me.Text = "ค้นหาชื่อลูกค้า"
         CType(Me.dgvMem, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()

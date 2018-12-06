@@ -46,11 +46,6 @@ Partial Class frmSale
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.dgvProduct = New System.Windows.Forms.DataGridView()
         Me.dgvSale = New System.Windows.Forms.DataGridView()
-        Me.Gid = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Gname = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Gprice = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Gamount = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Gnum = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.txtID = New System.Windows.Forms.TextBox()
         Me.btnExit = New System.Windows.Forms.Button()
         Me.btncancel = New System.Windows.Forms.Button()
@@ -60,7 +55,15 @@ Partial Class frmSale
         Me.Label10 = New System.Windows.Forms.Label()
         Me.Label11 = New System.Windows.Forms.Label()
         Me.lblSum = New System.Windows.Forms.Label()
-        Me.Button1 = New System.Windows.Forms.Button()
+        Me.txtColor = New System.Windows.Forms.TextBox()
+        Me.Label12 = New System.Windows.Forms.Label()
+        Me.Gid = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Gname = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GColor = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Gprice = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Gamount = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Gnum = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.aaa = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GroupBox1.SuspendLayout()
         CType(Me.dgvProduct, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dgvSale, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -233,7 +236,7 @@ Partial Class frmSale
         '
         'btAdd
         '
-        Me.btAdd.Location = New System.Drawing.Point(291, 452)
+        Me.btAdd.Location = New System.Drawing.Point(294, 452)
         Me.btAdd.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.btAdd.Name = "btAdd"
         Me.btAdd.Size = New System.Drawing.Size(120, 46)
@@ -243,7 +246,7 @@ Partial Class frmSale
         '
         'btRemove
         '
-        Me.btRemove.Location = New System.Drawing.Point(462, 447)
+        Me.btRemove.Location = New System.Drawing.Point(465, 452)
         Me.btRemove.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.btRemove.Name = "btRemove"
         Me.btRemove.Size = New System.Drawing.Size(120, 46)
@@ -253,7 +256,8 @@ Partial Class frmSale
         '
         'GroupBox1
         '
-        Me.GroupBox1.Controls.Add(Me.Button1)
+        Me.GroupBox1.Controls.Add(Me.Label12)
+        Me.GroupBox1.Controls.Add(Me.txtColor)
         Me.GroupBox1.Controls.Add(Me.btRemove)
         Me.GroupBox1.Controls.Add(Me.btAdd)
         Me.GroupBox1.Controls.Add(Me.txtAmount)
@@ -296,42 +300,12 @@ Partial Class frmSale
         'dgvSale
         '
         Me.dgvSale.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvSale.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Gid, Me.Gname, Me.Gprice, Me.Gamount, Me.Gnum})
+        Me.dgvSale.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Gid, Me.Gname, Me.GColor, Me.Gprice, Me.Gamount, Me.Gnum, Me.aaa})
         Me.dgvSale.Location = New System.Drawing.Point(18, 601)
         Me.dgvSale.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.dgvSale.Name = "dgvSale"
         Me.dgvSale.Size = New System.Drawing.Size(1003, 221)
         Me.dgvSale.TabIndex = 23
-        '
-        'Gid
-        '
-        Me.Gid.HeaderText = "รหัสสินค้า"
-        Me.Gid.Name = "Gid"
-        Me.Gid.Width = 150
-        '
-        'Gname
-        '
-        Me.Gname.HeaderText = "ชื่อสินค้า"
-        Me.Gname.Name = "Gname"
-        Me.Gname.Width = 200
-        '
-        'Gprice
-        '
-        Me.Gprice.HeaderText = "ราคา"
-        Me.Gprice.Name = "Gprice"
-        Me.Gprice.Width = 120
-        '
-        'Gamount
-        '
-        Me.Gamount.HeaderText = "จำนวนที่ขาย"
-        Me.Gamount.Name = "Gamount"
-        Me.Gamount.Width = 150
-        '
-        'Gnum
-        '
-        Me.Gnum.HeaderText = "รวม"
-        Me.Gnum.Name = "Gnum"
-        Me.Gnum.Width = 150
         '
         'txtID
         '
@@ -419,15 +393,62 @@ Partial Class frmSale
         Me.lblSum.TabIndex = 38
         Me.lblSum.Text = "0.00"
         '
-        'Button1
+        'txtColor
         '
-        Me.Button1.Location = New System.Drawing.Point(294, 506)
-        Me.Button1.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(120, 46)
-        Me.Button1.TabIndex = 21
-        Me.Button1.Text = "เพิ่มรายการ"
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.txtColor.Location = New System.Drawing.Point(449, 154)
+        Me.txtColor.Name = "txtColor"
+        Me.txtColor.Size = New System.Drawing.Size(119, 28)
+        Me.txtColor.TabIndex = 21
+        '
+        'Label12
+        '
+        Me.Label12.AutoSize = True
+        Me.Label12.Location = New System.Drawing.Point(409, 153)
+        Me.Label12.Name = "Label12"
+        Me.Label12.Size = New System.Drawing.Size(24, 29)
+        Me.Label12.TabIndex = 22
+        Me.Label12.Text = "สี"
+        '
+        'Gid
+        '
+        Me.Gid.HeaderText = "รหัสสินค้า"
+        Me.Gid.Name = "Gid"
+        Me.Gid.Width = 150
+        '
+        'Gname
+        '
+        Me.Gname.HeaderText = "ชื่อสินค้า"
+        Me.Gname.Name = "Gname"
+        Me.Gname.Width = 200
+        '
+        'GColor
+        '
+        Me.GColor.HeaderText = "สี"
+        Me.GColor.Name = "GColor"
+        '
+        'Gprice
+        '
+        Me.Gprice.HeaderText = "ราคา"
+        Me.Gprice.Name = "Gprice"
+        Me.Gprice.Width = 120
+        '
+        'Gamount
+        '
+        Me.Gamount.HeaderText = "จำนวนที่ขาย"
+        Me.Gamount.Name = "Gamount"
+        Me.Gamount.Width = 150
+        '
+        'Gnum
+        '
+        Me.Gnum.HeaderText = "รวม"
+        Me.Gnum.Name = "Gnum"
+        Me.Gnum.Width = 150
+        '
+        'aaa
+        '
+        Me.aaa.HeaderText = "รหัสสี"
+        Me.aaa.Name = "aaa"
+        Me.aaa.Visible = False
         '
         'frmSale
         '
@@ -491,10 +512,13 @@ Partial Class frmSale
     Friend WithEvents Label10 As System.Windows.Forms.Label
     Friend WithEvents Label11 As System.Windows.Forms.Label
     Friend WithEvents lblSum As System.Windows.Forms.Label
+    Friend WithEvents txtColor As System.Windows.Forms.TextBox
+    Friend WithEvents Label12 As System.Windows.Forms.Label
     Friend WithEvents Gid As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Gname As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents GColor As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Gprice As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Gamount As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Gnum As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Button1 As System.Windows.Forms.Button
+    Friend WithEvents aaa As System.Windows.Forms.DataGridViewTextBoxColumn
 End Class
