@@ -12,8 +12,8 @@ Public Class frmSale
         Dim ds As New DataSet
 
         Module1.Connect()
-        'sql = "SELECT U_USer, U_Name From Userr"
-        sql = "SELECT U_ID,U_User,U_Name FROM Userr  where U_User  = '" & User_Na & "'"
+        sql = "SELECT U_USer, U_Name From Userr"
+        'sql = "SELECT U_ID,U_User,U_Name FROM Userr  where U_User  = '" & User_Na & "'"
 
         da = New SqlDataAdapter(sql, Conn)
         da.Fill(ds, "Userr")
@@ -22,7 +22,7 @@ Public Class frmSale
             cmbUser.ValueMember = "U_User"
             cmbUser.DisplayMember = "U_Name"
         End If
-        sql = "SELECT p.P_ID,p.P_Name,p.P_Price,pr.Pr_Amount,pr.Pr_Color,pr.Pr_Num FROM Product p , Property pr where p.P_ID = pr.P_ID order by P_ID"
+        sql = "SELECT p.P_ID,p.P_Name,pr.Pr_Color,pr.Pr_Amount,p.P_Price,pr.Pr_Num FROM Product p , Property pr where p.P_ID = pr.P_ID order by P_ID"
         da = New SqlDataAdapter(sql, Conn)
         da.Fill(ds, "Product")
         dgvProduct.ReadOnly = True
@@ -31,12 +31,12 @@ Public Class frmSale
         dgvProduct.Columns(0).Width = 100
         dgvProduct.Columns(1).HeaderText = "ชื่อสินค้า"
         dgvProduct.Columns(1).Width = 100
-        dgvProduct.Columns(2).HeaderText = "ราคา"
-        dgvProduct.Columns(2).Width = 100
+        dgvProduct.Columns(4).HeaderText = "ราคา"
+        dgvProduct.Columns(4).Width = 100
         dgvProduct.Columns(3).HeaderText = "จำนวนคงเหลือ"
         dgvProduct.Columns(3).Width = 100
-        dgvProduct.Columns(4).HeaderText = "สี"
-        dgvProduct.Columns(4).Width = 100
+        dgvProduct.Columns(2).HeaderText = "สี"
+        dgvProduct.Columns(2).Width = 100
         dgvProduct.Columns(5).Visible = False
         cmbUser.Enabled = False
         dtsale.Enabled = False
@@ -51,6 +51,7 @@ Public Class frmSale
         txtsale.Enabled = False
         btAdd.Enabled = False
         btRemove.Enabled = False
+        dtsale.Enabled = False
         dgvProduct.Enabled = False
         dgvSale.Enabled = False
         btnAdd.Enabled = True
@@ -58,6 +59,7 @@ Public Class frmSale
         btncancel.Enabled = True
         btnExit.Enabled = True
         btnPrint.Enabled = False
+        dtsale.Enabled = False
     End Sub
 
     Sub clear()
@@ -69,7 +71,7 @@ Public Class frmSale
 
     Private Sub btAdd_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btAdd.Click
         Dim Gid, Gname, GColor As String
-        Dim Gnum, Gamount As Integer
+        Dim Gnum, Gamount, aaa As Integer
         Dim Gprice, Gtotal As Double
         '**********************************************************************
         If txtsale.Text = "" Then
@@ -95,6 +97,9 @@ Public Class frmSale
         Gprice = CDbl(txtPrice.Text)
         Gnum = CInt(txtsale.Text)
         GColor = txtColor.Text
+
+        aaa = (txtnum.Text)
+
         h = Gamount - Gnum
         Gtotal = Gnum * Gprice
         Dim Color As String = txtColor.Text
@@ -102,16 +107,15 @@ Public Class frmSale
         If dgvSale.RowCount - 2 >= 0 Then
             Dim a, x As Integer
             For a = 0 To dgvSale.RowCount - 2
-                If dgvSale.Rows(a).Cells(2).Value = dgvProduct.Rows(row).Cells(4).Value And dgvSale.Rows(a).Cells(0).Value = dgvProduct.Rows(row).Cells(0).Value Then
+                If dgvSale.Rows(a).Cells(2).Value = dgvProduct.Rows(row).Cells(2).Value And dgvSale.Rows(a).Cells(0).Value = dgvProduct.Rows(row).Cells(0).Value Then
                     x = a
                 End If
             Next
-            If dgvSale.Rows(x).Cells(2).Value = dgvProduct.Rows(row).Cells(4).Value And dgvSale.Rows(x).Cells(0).Value = dgvProduct.Rows(row).Cells(0).Value Then
-                MessageBox.Show("Found Diff : " & dgvSale.Rows(x).Cells(0).Value)
+            If dgvSale.Rows(x).Cells(2).Value = dgvProduct.Rows(row).Cells(2).Value And dgvSale.Rows(x).Cells(0).Value = dgvProduct.Rows(row).Cells(0).Value Then
                 dgvSale.Rows(x).Cells(4).Value = CInt(dgvSale.Rows(x).Cells(4).Value) + CInt(txtsale.Text)
                 dgvSale.Rows(x).Cells(5).Value = CInt(dgvSale.Rows(x).Cells(5).Value) + CInt(txtsale.Text) * CInt(txtPrice.Text)
                 dgvProduct.Rows(row).Cells(3).Value = CInt(txtAmount.Text) - CInt(txtsale.Text)
-                dgvSale.Rows(x).Cells(2).Value = dgvProduct.Rows(row).Cells(4).Value
+                dgvSale.Rows(x).Cells(2).Value = dgvProduct.Rows(row).Cells(2).Value
                 sum = 0
                 For i As Integer = 0 To dgvSale.RowCount - 2
                     sum += CInt(dgvSale.Rows(i).Cells(5).Value)
@@ -124,7 +128,7 @@ Public Class frmSale
             End If
         End If
 
-        dgvSale.Rows.Add(Gid, Gname, Color, Gprice, Gnum, Gtotal)
+        dgvSale.Rows.Add(Gid, Gname, Color, Gprice, Gnum, Gtotal, aaa)
         sum = 0
         For i As Integer = 0 To dgvSale.RowCount - 2
             sum += CInt(dgvSale.Rows(i).Cells(5).Value)
@@ -174,11 +178,20 @@ Public Class frmSale
         'btRemove.Enabled = False
         ' btnSave.Enabled = False
         ' End If
-        Dim a As Integer = 0
-        While dgvProduct.Rows(a).Cells(0).Value <> dgvSale.Rows(row).Cells(0).Value
-            a += 1
+        Dim X As Integer = 0
+        While dgvProduct.Rows(X).Cells(5).Value <> dgvSale.Rows(row).Cells(6).Value
+            'MessageBox.Show(X)
+            X += 1
         End While
-        dgvProduct.Rows(a).Cells(3).Value = CInt(dgvProduct.Rows(a).Cells(3).Value) + CInt(dgvSale.Rows(row).Cells(4).Value)
+        'For a = 0 To dgvProduct.RowCount
+        'If dgvSale.Rows(a).Cells(0).Value <> dgvProduct.Rows(row).Cells(0).Value Then
+        'X = a
+        'MessageBox.Show(a)
+        'MessageBox.Show(X)
+        'End If
+        'Next
+        'MessageBox.Show(X)
+        dgvProduct.Rows(X).Cells(3).Value = CInt(dgvProduct.Rows(X).Cells(3).Value) + CInt(dgvSale.Rows(row).Cells(4).Value)
         If dgvSale.RowCount = 2 Then
             sum = 0
             lblSum.Text = "0.00"
@@ -217,7 +230,7 @@ Public Class frmSale
         txtID.Text = key_Gen
         txtColor.Enabled = False
         cmbUser.Enabled = True
-        dtsale.Enabled = True
+        dtsale.Enabled = False
         txtMID.Enabled = False
         btnSearch.Enabled = True
         txtMNa.Enabled = False
@@ -299,14 +312,30 @@ Public Class frmSale
 
     Private Sub btncancel_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btncancel.Click
         Dim sql As String
-        Dim sqlCmd As SqlCommand
-        Dim num As String
-        Dim i, k As Integer
+        Dim da As SqlDataAdapter
+        Dim ds As New DataSet
+        Sql = "SELECT p.P_ID,p.P_Name,pr.Pr_Color,pr.Pr_Amount,p.P_Price,pr.Pr_Num FROM Product p , Property pr where p.P_ID = pr.P_ID order by P_ID"
+        da = New SqlDataAdapter(Sql, Conn)
+        da.Fill(ds, "Product")
+        dgvProduct.ReadOnly = True
+        dgvProduct.DataSource = ds.Tables("Product")
+        dgvProduct.Columns(0).HeaderText = "รหัสสินค้า"
+        dgvProduct.Columns(0).Width = 100
+        dgvProduct.Columns(1).HeaderText = "ชื่อสินค้า"
+        dgvProduct.Columns(1).Width = 100
+        dgvProduct.Columns(4).HeaderText = "ราคา"
+        dgvProduct.Columns(4).Width = 100
+        dgvProduct.Columns(3).HeaderText = "จำนวนคงเหลือ"
+        dgvProduct.Columns(3).Width = 100
+        dgvProduct.Columns(2).HeaderText = "สี"
+        dgvProduct.Columns(2).Width = 100
+        dgvProduct.Columns(5).Visible = False
         txtPID.Text = ""
         txtPNa.Text = ""
         txtAmount.Text = ""
         txtPrice.Text = ""
         txtsale.Text = ""
+        txtColor.Text = ""
         lblSum.Text = "0.00"
         txtPID.Enabled = False
         txtPNa.Enabled = False
@@ -328,6 +357,7 @@ Public Class frmSale
         txtMID.Text = ""
         txtMNa.Text = ""
         dgvSale.Rows.Clear()
+
     End Sub
 
     Private Sub btnExit_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnExit.Click
@@ -341,6 +371,12 @@ Public Class frmSale
         End If
         frmSlipSale.Show()
         clear()
+        dgvSale.Rows.Clear()
+        txtPID.Text = ""
+        txtPNa.Text = ""
+        txtAmount.Text = ""
+        txtPrice.Text = ""
+        txtsale.Text = ""
         txtPID.Enabled = False
         txtPNa.Enabled = False
         cmbUser.Enabled = False
@@ -374,9 +410,10 @@ Public Class frmSale
         row = e.RowIndex
         txtPID.Text = dgvProduct.Rows(e.RowIndex).Cells(0).Value
         txtPNa.Text = dgvProduct.Rows(e.RowIndex).Cells(1).Value
-        txtPrice.Text = dgvProduct.Rows(e.RowIndex).Cells(2).Value
+        txtPrice.Text = dgvProduct.Rows(e.RowIndex).Cells(4).Value
         txtAmount.Text = dgvProduct.Rows(e.RowIndex).Cells(3).Value
-        txtColor.Text = dgvProduct.Rows(e.RowIndex).Cells(4).Value
+        txtColor.Text = dgvProduct.Rows(e.RowIndex).Cells(2).Value
+        txtnum.Text = dgvProduct.Rows(e.RowIndex).Cells(5).Value
         amount = dgvProduct.Rows(e.RowIndex).Cells(3).Value
         'x = dgvProduct.Rows(e.RowIndex).Cells(5).Value
         sql = "Select P_Price FROM Product WHERE P_ID = '" & txtPID.Text & "'"

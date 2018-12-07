@@ -236,7 +236,7 @@ Public Class frmPropertyy
         Dim sql As String
         Dim sqlCmd As SqlCommand
         If (MessageBox.Show("คุณต้องการลบข้อมูลนี้ใช่หรือไม่", "ยืนยันการลบข้อมูล", MessageBoxButtons.OKCancel, MessageBoxIcon.Information)) = Windows.Forms.DialogResult.OK Then
-            sql = "DELETE Property WHERE P_ID = '" & txtPID.Text & "'"
+            sql = "DELETE Property WHERE Pr_Num = '" & txtNum.Text & "'"
             sqlCmd = New SqlCommand(sql, Conn)
             sqlCmd.ExecuteNonQuery()
             MessageBox.Show("ลบข้อมูลเรียบร้อย", "ผลการลบข้อมูล", MessageBoxButtons.OK, MessageBoxIcon.Information)

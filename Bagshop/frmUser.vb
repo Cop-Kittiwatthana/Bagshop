@@ -294,7 +294,7 @@ Public Class frmUser
         Else
             rbtStatus1.Checked = True
         End If
-        sql = "Select U_ID,U_Pass,U_Add,U_Tel,U_Sex FROM Userr WHERE U_User = '" & txtID.Text & "'"
+        sql = "Select U_ID,U_Pass,U_Add,U_Tel,U_Sex FROM Userr WHERE U_User = '" & txtUser.Text & "'"
         sqlCmd = New SqlCommand(sql, Conn)
         sqlDr = sqlCmd.ExecuteReader
         If sqlDr.Read() Then

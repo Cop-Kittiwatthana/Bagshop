@@ -153,12 +153,12 @@ Public Class frmProduct
         End If
 
         If save_status = "Add" Then
-            sql = "SELECT P_ID FROM Product WHERE P_ID = '" & txtID.Text & "'"
+            sql = "SELECT P_Name FROM Product WHERE P_Name = '" & txtName.Text & "'"
             sqlCmd = New SqlCommand(sql, Conn)
             sqlDr = sqlCmd.ExecuteReader
             If sqlDr.Read() Then
-                MessageBox.Show("รหัสสินค้า ซ้ำ กรุณากรอกใหม่", "ตรวจสอบ", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                txtID.Focus()
+                MessageBox.Show("ชื่อสินค้าซ้ำ  กรุณากรอกใหม่", "ตรวจสอบ", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                txtName.Focus()
                 sqlDr.Close()
                 Exit Sub
             End If
