@@ -12,8 +12,8 @@ Public Class frmSale
         Dim ds As New DataSet
 
         Module1.Connect()
-        sql = "SELECT U_USer, U_Name From Userr"
-        'sql = "SELECT U_ID,U_User,U_Name FROM Userr  where U_User  = '" & User_Na & "'"
+        ' sql = "SELECT U_USer, U_Name From Userr"
+        sql = "SELECT U_ID,U_User,U_Name FROM Userr  where U_User  = '" & User_Na & "'"
 
         da = New SqlDataAdapter(sql, Conn)
         da.Fill(ds, "Userr")
@@ -22,24 +22,8 @@ Public Class frmSale
             cmbUser.ValueMember = "U_User"
             cmbUser.DisplayMember = "U_Name"
         End If
-        sql = "SELECT p.P_ID,p.P_Name,pr.Pr_Color,pr.Pr_Amount,p.P_Price,pr.Pr_Num FROM Product p , Property pr where p.P_ID = pr.P_ID order by P_ID"
-        da = New SqlDataAdapter(sql, Conn)
-        da.Fill(ds, "Product")
-        dgvProduct.ReadOnly = True
-        dgvProduct.DataSource = ds.Tables("Product")
-        dgvProduct.Columns(0).HeaderText = "รหัสสินค้า"
-        dgvProduct.Columns(0).Width = 100
-        dgvProduct.Columns(1).HeaderText = "ชื่อสินค้า"
-        dgvProduct.Columns(1).Width = 100
-        dgvProduct.Columns(4).HeaderText = "ราคา"
-        dgvProduct.Columns(4).Width = 100
-        dgvProduct.Columns(3).HeaderText = "จำนวนคงเหลือ"
-        dgvProduct.Columns(3).Width = 100
-        dgvProduct.Columns(2).HeaderText = "สี"
-        dgvProduct.Columns(2).Width = 100
-        dgvProduct.Columns(5).Visible = False
+        showdata()
         cmbUser.Enabled = False
-        dtsale.Enabled = False
         txtMID.Enabled = False
         txtMNa.Enabled = False
         btnSearch.Enabled = False
@@ -68,7 +52,27 @@ Public Class frmSale
         txtsale.Text = ""
         txtPrice.Text = ""
     End Sub
-
+    Sub showdata()
+        Dim sql As String
+        Dim da As SqlDataAdapter
+        Dim ds As New DataSet
+        Sql = "SELECT p.P_ID,p.P_Name,pr.Pr_Color,pr.Pr_Amount,p.P_Price,pr.Pr_Num FROM Product p , Property pr where p.P_ID = pr.P_ID and pr.Pr_Amount > 0 order by P_ID"
+        da = New SqlDataAdapter(Sql, Conn)
+        da.Fill(ds, "Product")
+        dgvProduct.ReadOnly = True
+        dgvProduct.DataSource = ds.Tables("Product")
+        dgvProduct.Columns(0).HeaderText = "รหัสสินค้า"
+        dgvProduct.Columns(0).Width = 100
+        dgvProduct.Columns(1).HeaderText = "ชื่อสินค้า"
+        dgvProduct.Columns(1).Width = 100
+        dgvProduct.Columns(4).HeaderText = "ราคา"
+        dgvProduct.Columns(4).Width = 100
+        dgvProduct.Columns(3).HeaderText = "จำนวนคงเหลือ"
+        dgvProduct.Columns(3).Width = 100
+        dgvProduct.Columns(2).HeaderText = "สี"
+        dgvProduct.Columns(2).Width = 100
+        dgvProduct.Columns(5).Visible = False 
+    End Sub
     Private Sub btAdd_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btAdd.Click
         Dim Gid, Gname, GColor As String
         Dim Gnum, Gamount, aaa As Integer
@@ -138,6 +142,15 @@ Public Class frmSale
         dgvProduct.Rows(row).Cells(3).Value = Gamount - Gnum
         btnSave.Enabled = True
 
+        Dim sql As String
+        Dim sqlCmd As SqlCommand
+            sql = "update Property set Pr_Amount = Pr_Amount -'" & Gnum & "' where Pr_Num = '" & aaa & "'"
+            sqlCmd = New SqlCommand(sql, Conn)
+            sqlCmd.ExecuteNonQuery()
+        showdata()
+        ' If dgvSale.Rows.Count <= 1 Then
+        'dtsale.Enabled = True
+        'End If
         '************************************************************************************************
         clear()
         txtPID.Text = ""
@@ -165,42 +178,42 @@ Public Class frmSale
         End If
         btAdd.Enabled = True
         btRemove.Enabled = False
+
     End Sub
 
 
-
     Private Sub btRemove_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btRemove.Click
-        'If dgvSale.Rows.Count <= 1 Then Exit Sub
-        'sum = sum - Val(dgvSale.CurrentRow.Cells(5).Value)
-        'lblSum.Text = sum.ToString("#,##.00")
-        'dgvSale.Rows.Remove(dgvSale.CurrentRow)
-        ' If dgvSale.Rows.Count <= 1 Then
-        'btRemove.Enabled = False
-        ' btnSave.Enabled = False
-        ' End If
-        Dim X As Integer = 0
-        While dgvProduct.Rows(X).Cells(5).Value <> dgvSale.Rows(row).Cells(6).Value
-            'MessageBox.Show(X)
-            X += 1
-        End While
-        'For a = 0 To dgvProduct.RowCount
-        'If dgvSale.Rows(a).Cells(0).Value <> dgvProduct.Rows(row).Cells(0).Value Then
-        'X = a
-        'MessageBox.Show(a)
+        Dim sql As String
+        Dim sqlCmd As SqlCommand
+        Dim sqlDr As SqlDataReader
+        Dim c, k As Integer
+        'k = dgvSale.RowCount - 2
+        ' For c = 0 To k
+        'MessageBox.Show(k)
+        'MessageBox.Show(c)
+        sql = "update Property set Pr_Amount = Pr_Amount +'" & dgvSale.CurrentRow.Cells(4).Value & "' where Pr_Num = '" & dgvSale.CurrentRow.Cells(6).Value & "'"
+        sqlCmd = New SqlCommand(sql, Conn)
+        sqlCmd.ExecuteNonQuery()
+        'Dim X As Integer = 0
+        'While dgvProduct.Rows(X).Cells(5).Value <> dgvSale.Rows(row).Cells(6).Value 
         'MessageBox.Show(X)
-        'End If
-        'Next
-        'MessageBox.Show(X)
-        dgvProduct.Rows(X).Cells(3).Value = CInt(dgvProduct.Rows(X).Cells(3).Value) + CInt(dgvSale.Rows(row).Cells(4).Value)
+        'x += 1
+        'End While
+        'dgvProduct.Rows(x).Cells(3).Value = CInt(dgvProduct.Rows(x).Cells(3).Value) + CInt(dgvSale.Rows(row).Cells(4).Value)
         If dgvSale.RowCount = 2 Then
             sum = 0
             lblSum.Text = "0.00"
             dgvSale.Rows.Remove(dgvSale.CurrentRow)
         Else
-            sum -= CInt(dgvSale.Rows(row).Cells(5).Value)
+            sum = sum - Val(dgvSale.CurrentRow.Cells(5).Value)
             dgvSale.Rows.Remove(dgvSale.CurrentRow)
             lblSum.Text = sum.ToString("#,##.00")
         End If
+        If dgvSale.Rows.Count <= 1 Then
+            btRemove.Enabled = False
+            btnSave.Enabled = False
+        End If
+        showdata()
     End Sub
 
     Private Sub btnAdd_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAdd.Click
@@ -256,6 +269,7 @@ Public Class frmSale
         Dim sqlCmd As SqlCommand
         Dim sqlDr As SqlDataReader
         Dim M_ID, saleID, Num, Price, ID, orderDate, Total, Color As String
+        'Dim d, m, y As String
         Dim i, k, orderID As Integer
         k = dgvSale.RowCount - 2
         If k < 0 Then
@@ -263,6 +277,9 @@ Public Class frmSale
             Exit Sub
         End If
         orderDate = Today.Date.ToString("s")
+        'd = Convert.ToDateTime(dtsale.Value).Day
+        'm = Convert.ToDateTime(dtsale.Value).Month
+        ' y = Convert.ToDateTime(dtsale.Value).Year
         sql = "insert into Orderr (O_ID,O_Date,Net,M_ID,U_User,Pr_Color)"
         sql &= "values('" & CStr(txtID.Text) & "','" & orderDate & "','" & CDbl(lblSum.Text) & "','" & CStr(txtMID.Text) & "','" & cmbUser.SelectedValue & "','" & txtColor.Text & "')"
         sqlCmd = New SqlCommand(sql, Conn)
@@ -312,31 +329,30 @@ Public Class frmSale
 
     Private Sub btncancel_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btncancel.Click
         Dim sql As String
-        Dim da As SqlDataAdapter
         Dim ds As New DataSet
-        Sql = "SELECT p.P_ID,p.P_Name,pr.Pr_Color,pr.Pr_Amount,p.P_Price,pr.Pr_Num FROM Product p , Property pr where p.P_ID = pr.P_ID order by P_ID"
-        da = New SqlDataAdapter(Sql, Conn)
-        da.Fill(ds, "Product")
-        dgvProduct.ReadOnly = True
-        dgvProduct.DataSource = ds.Tables("Product")
-        dgvProduct.Columns(0).HeaderText = "รหัสสินค้า"
-        dgvProduct.Columns(0).Width = 100
-        dgvProduct.Columns(1).HeaderText = "ชื่อสินค้า"
-        dgvProduct.Columns(1).Width = 100
-        dgvProduct.Columns(4).HeaderText = "ราคา"
-        dgvProduct.Columns(4).Width = 100
-        dgvProduct.Columns(3).HeaderText = "จำนวนคงเหลือ"
-        dgvProduct.Columns(3).Width = 100
-        dgvProduct.Columns(2).HeaderText = "สี"
-        dgvProduct.Columns(2).Width = 100
-        dgvProduct.Columns(5).Visible = False
+        Dim d As Integer
+        lblSum.Text = "0.00"
+        If d = 0 Then
+            If dgvSale.Rows.Count > 1 Then
+                For i = 1 To dgvSale.Rows.Count
+                    'MessageBox.Show(i)
+                    Dim sqlCmd As SqlCommand
+                    Module1.Connect()
+                    sql = "UPDATE Property SET Pr_Amount = (Pr_Amount + '" & dgvSale.Rows(i - 1).Cells(4).Value & "' )WHERE Pr_Num = '" & dgvSale.Rows(i - 1).Cells(6).Value & "' "
+                    'MessageBox.Show(dgvSale.Rows(i - 1).Cells(4).Value)
+                    sqlCmd = New SqlCommand(sql, Conn)
+                    sqlCmd.ExecuteNonQuery()
+                Next
+
+            End If
+        End If
+        dgvSale.Rows.Clear()
         txtPID.Text = ""
         txtPNa.Text = ""
         txtAmount.Text = ""
         txtPrice.Text = ""
         txtsale.Text = ""
         txtColor.Text = ""
-        lblSum.Text = "0.00"
         txtPID.Enabled = False
         txtPNa.Enabled = False
         cmbUser.Enabled = False
@@ -357,7 +373,7 @@ Public Class frmSale
         txtMID.Text = ""
         txtMNa.Text = ""
         dgvSale.Rows.Clear()
-
+        showdata()
     End Sub
 
     Private Sub btnExit_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnExit.Click
@@ -443,16 +459,32 @@ Public Class frmSale
     End Sub
 
     Private Sub dgvSale_CellContentDoubleClick(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dgvSale.CellContentDoubleClick
+        'Dim sql As String
+        'Dim da As SqlDataAdapter
+        'Dim ds As New DataSet
+        'sql = "select p.P_ID,p.P_Name,pr.Pr_Color,pr.Pr_Amount,p.P_Price,pr.Pr_Num FROM Product p , Property pr where p.P_ID = pr.P_ID and pr.Pr_Amount > 0 order by P_ID"
+
         row = e.RowIndex
         btRemove.Enabled = True
         btRemove.BackColor = Color.FromArgb(52, 172, 224)
     End Sub
 
     Private Sub frmSale_FormClosing(ByVal sender As System.Object, ByVal e As System.Windows.Forms.FormClosingEventArgs) Handles MyBase.FormClosing
-        If MessageBox.Show("คุณต้องการออกจากโปรแกรมหรือไม่?", "Exit Program", MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) = Windows.Forms.DialogResult.OK Then
-            e.Cancel = False
-        Else
+        If MessageBox.Show("คุณต้องการออกจากโปรแกรมหรือไม่?", "Exit Program", MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) = Windows.Forms.DialogResult.Cancel Then
             e.Cancel = True
+        Else
+            Dim sql As String
+            Dim ds As New DataSet
+            If dgvSale.Rows.Count > 1 Then
+                For i = 1 To dgvSale.Rows.Count
+                    Dim sqlCmd As SqlCommand
+                    Module1.Connect()
+                    sql = "UPDATE Property SET Pr_Amount = (Pr_Amount + '" & dgvSale.Rows(i - 1).Cells(4).Value & "' )WHERE Pr_Num = '" & dgvSale.Rows(i - 1).Cells(6).Value & "' "
+                    sqlCmd = New SqlCommand(sql, Conn)
+                    sqlCmd.ExecuteNonQuery()
+                Next
+                dgvSale.Rows.Clear()
+            End If
         End If
     End Sub
 

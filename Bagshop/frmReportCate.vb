@@ -24,7 +24,7 @@ Public Class frmReportCate
         Dim tbCra As DataTable
         Dim currentReport As New ctrCategory
         Module1.Connect()
-        sql = "select p.P_ID,p.P_Name,pr.Pr_Color,p.P_Detail,(pr.Pr_Amount) as P_Amount,p.P_Price,c.C_Name From Product p , Property pr ,Category c Where p.C_ID = c.C_ID AND pr.P_ID = p.P_ID and p.C_ID = '" & cmbSearch.SelectedValue & " ' "
+        sql = "select p.P_ID,p.P_Name,pr.Pr_Color,p.P_Detail,(pr.Pr_Amount) as P_Amount,p.P_Price,c.C_Name From Product p , Property pr ,Category c Where p.C_ID = c.C_ID AND pr.P_ID = p.P_ID and p.C_ID = '" & cmbSearch.SelectedValue & " ' order by P_ID "
         sqlCmd = New SqlCommand(sql, Conn)
         sqlDr = sqlCmd.ExecuteReader
         tbCra = New DataTable
